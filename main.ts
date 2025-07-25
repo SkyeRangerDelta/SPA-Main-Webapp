@@ -14,12 +14,56 @@
 // Imports
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import "https://deno.land/std@0.224.0/dotenv/load.ts";
+import { DBHandler } from "./API/Utilities/DBHandler.ts";
 
 // Server
 const app = new Application();
 
-app.use( (ctx) => {
-  ctx.response.body = "Welcome to the Sarim Port Authority WebApp!";
+const port = parseInt( Deno.env.get('APP_PORT') ) || 3000;
+const hostname = Deno.env.get('APP_HOST') || "localhost";
+
+const Mongo = new DBHandler();
+
+// Attach Mongo
+app.use( async ( ctx, next ) => {
+  ctx.state.Mongo = Mongo;
+  await next();
 });
 
-await app.listen( { port: 3000 } );
+// Log
+app.use( async ( ctx, next ) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  console.log(`${ctx.request.method} ${ctx.request.url} - ${ms}ms`);
+});
+
+// Pages/Routes
+app.use( async ( ctx ) => {
+  const indexPath = Deno.cwd() + "/frontend/dist/spa-main-webapp/browser";
+
+  try {
+    await ctx.send({
+      root: indexPath,
+      index: "index.html",
+    });
+  }
+  catch (error) {
+    console.error("Error serving index.html:", error);
+    ctx.response.status = 500;
+    ctx.response.body = "Internal Server Error";
+  }
+});
+
+// Error handling
+app.use( ( ctx ) => {
+  if (ctx.response.status === 404) {
+    ctx.response.body = "404 Not Found";
+  } else if (ctx.response.status >= 500) {
+    ctx.response.body = "500 Internal Server Error";
+  }
+} );
+
+// Start the server
+console.log( `Serving app on ${ hostname }:${ port }` );
+await app.listen( { port: port, hostname: hostname } );
