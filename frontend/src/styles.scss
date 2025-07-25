@@ -1,4 +1,3 @@
-
 // Include theming for Angular Material with `mat.theme()`.
 // This Sass mixin will define CSS variables that are used for styling Angular Material
 // components according to the Material 3 design spec.
@@ -115,4 +114,40 @@ section {
   width: 100%;
   max-width: 900px;
   margin: 20px 0;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.nav-menu a {
+  font-family: $header-text, serif;
+  font-size: 1.1rem;
+  color: var(--mat-sys-primary);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+body.dark-mode .nav-menu a {
+  color: #90caf9;
+}
+body.dark-mode .nav-menu a:hover,
+body.dark-mode .nav-menu a.active {
+  background: #1565c0;
+  color: #fff;
+}
+
+body.light-mode .nav-menu a {
+  color: #1976d2;
+}
+body.light-mode .nav-menu a:hover,
+body.light-mode .nav-menu a.active {
+  background: #e3f2fd;
+  color: #1976d2;
 }
