@@ -60,6 +60,15 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/header/header.scss">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/header/header.scss" />
+              <option name="originalContent" value="h1 {&#10;  font-size: 4rem;&#10;}&#10;&#10;header-subtitle {&#10;  font-size: 1.5rem;&#10;  color: var(--mat-sys-on-surface-variant);&#10;  margin-top: 0.5rem;&#10;}&#10;" />
+              <option name="updatedContent" value="h1 {&#10;  font-size: 4rem;&#10;}&#10;&#10;.header-subtitle {&#10;  text-align: left;&#10;  margin-left: 24px;&#10;  margin-top: -12px;&#10;  font-size: 1.2rem;&#10;  font-weight: 400;&#10;  color: #6c7a89;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/intro.html">
           <value>
             <PendingDiffInfo>
