@@ -12,6 +12,82 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/app.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.html" />
+              <option name="originalContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;header&gt;&#10;    &lt;h1&gt;Sarim Port Authority&lt;/h1&gt;&#10;    &lt;button (click)=&quot;toggleDarkMode()&quot;&gt;Toggle Dark Mode&lt;/button&gt;&#10;  &lt;/header&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;h2 class=&quot;content-header&quot;&gt;Welcome to Sarim Port Authority&lt;/h2&gt;&#10;    &lt;p&gt;This is a minimalistic front-end for the fictional Sarim Port Authority. It's designed with a focus on dark mode and accessibility, featuring a variety of fonts that reflect the elegance and heritage of the port city.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;h2 class=&quot;content-header&quot;&gt;Important Notices&lt;/h2&gt;&#10;    &lt;p class=&quot;handwritten-text&quot;&gt;Note: This is a simulated handwritten message to convey important updates.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;p class=&quot;content-header&quot;&gt;Sarim Portmaster&lt;/p&gt;&#10;    &lt;p class=&quot;fine-signature&quot;&gt;Admiral Delta&lt;/p&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;&#10;" />
+              <option name="updatedContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;header&gt;&#10;    &lt;h1&gt;Sarim Port Authority&lt;/h1&gt;&#10;    &lt;button (click)=&quot;toggleDarkMode()&quot;&gt;Toggle Dark Mode&lt;/button&gt;&#10;  &lt;/header&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;h2 class=&quot;content-header&quot;&gt;Welcome to Sarim Port Authority&lt;/h2&gt;&#10;    &lt;p&gt;This is a minimalistic front-end for the fictional Sarim Port Authority. It's designed with a focus on dark mode and accessibility, featuring a variety of fonts that reflect the elegance and heritage of the port city.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;h2 class=&quot;content-header&quot;&gt;Important Notices&lt;/h2&gt;&#10;    &lt;p class=&quot;handwritten-text&quot;&gt;Note: This is a simulated handwritten message to convey important updates.&lt;/p&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;p class=&quot;content-header&quot;&gt;Sarim Portmaster&lt;/p&gt;&#10;    &lt;p class=&quot;fine-signature&quot;&gt;Admiral Delta&lt;/p&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/app.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.ts" />
+              <option name="originalContent" value="import { Component, signal } from '@angular/core';&#10;import { RouterOutlet } from '@angular/router';&#10;&#10;@Component({&#10;  selector: 'app-root',&#10;  imports: [RouterOutlet],&#10;  templateUrl: './app.html',&#10;  styleUrl: './app.scss'&#10;})&#10;export class App {&#10;  toggleDarkMode() {&#10;    document.body.classList.toggle('dark-mode');&#10;    document.body.classList.toggle('light-mode');&#10;  }&#10;}&#10;" />
+              <option name="updatedContent" value="import { Component, signal } from '@angular/core';&#10;import { RouterOutlet } from '@angular/router';&#10;&#10;@Component({&#10;  selector: 'app-root',&#10;  imports: [RouterOutlet],&#10;  templateUrl: './app.html',&#10;  styleUrl: './app.scss'&#10;})&#10;export class App {&#10;  toggleDarkMode() {&#10;    document.body.classList.toggle('dark-mode');&#10;    document.body.classList.toggle('light-mode');&#10;  }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/footer.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/footer.ts" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/header.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/header.html" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/header.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/header.ts" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/intro.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/intro.html" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/intro.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/intro.ts" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/notices.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notices.html" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/app/notices.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notices.ts" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/styles.scss">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/styles.scss" />
+              <option name="originalContent" value="&#10;// Include theming for Angular Material with `mat.theme()`.&#10;// This Sass mixin will define CSS variables that are used for styling Angular Material&#10;// components according to the Material 3 design spec.&#10;// Learn more about theming and how to use it for your application's&#10;// custom components at https://material.angular.dev/guide/theming&#10;@use '@angular/material' as mat;&#10;&#10;// Custom Fonts&#10;$cinzel-decorative: 'Cinzel Decorative', serif;&#10;$libre-baskerville: 'Libre Baskerville', serif;&#10;$merriweather: 'Merriweather', serif;&#10;$im-fell-dw-pica: 'IM FELL DW Pica', serif;&#10;$allura: 'Allura', cursive;&#10;$edwardian-script-itc: 'Edwardian Script ITC', cursive;&#10;&#10;html {&#10;  @include mat.theme((&#10;    color: (&#10;      primary: mat.$azure-palette,&#10;      tertiary: mat.$blue-palette,&#10;    ),&#10;    typography: Roboto,&#10;    density: 0,&#10;  ));&#10;&#10;  // Default the application to a light color theme. This can be changed to&#10;  // `dark` to enable the dark color theme, or to `light dark` to defer to the&#10;  // user's system settings.&#10;  color-scheme: dark;&#10;&#10;  // Set a default background, font and text colors for the application using&#10;  // Angular Material's system-level CSS variables. Learn more about these&#10;  // variables at https://material.angular.dev/guide/system-variables&#10;  background-color: var(--mat-sys-surface);&#10;  color: var(--mat-sys-on-surface);&#10;  font: var(--mat-sys-body-medium);&#10;}/* You can add global styles to this file, and also import other style files */&#10;&#10;// Apply to the HTML and Body elements&#10;html, body { height: 100%; }&#10;body {&#10;  margin: 0;&#10;  font-family: Roboto, &quot;Helvetica Neue&quot;, sans-serif;&#10;}&#10;&#10;// Global Styling for Dark Mode&#10;body.dark-mode {&#10;  background-color: #121212;&#10;  color: #E0E0E0;&#10;}&#10;&#10;// Light Mode (system-based)&#10;body.light-mode {&#10;  background-color: #F1F1F1;&#10;  color: #333;&#10;}&#10;&#10;// Font customization for headers&#10;h1, h2, h3 {&#10;  font-family: $cinzel-decorative, serif;&#10;}&#10;&#10;// Content headers with Libre Baskerville&#10;.content-header {&#10;  font-family: $libre-baskerville, serif;&#10;  font-weight: 700;&#10;}&#10;&#10;// Handwritten text with IM FELL DW Pica&#10;.handwritten-text {&#10;  font-family: $im-fell-dw-pica, serif;&#10;  font-style: italic;&#10;}&#10;&#10;// Signatures with Allura&#10;.signature {&#10;  font-family: $allura, cursive;&#10;  font-size: 1.5rem;&#10;}&#10;&#10;// Fine signatures with Edwardian Script ITC&#10;.fine-signature {&#10;  font-family: $edwardian-script-itc, cursive;&#10;  font-size: 2rem;&#10;}&#10;&#10;// Flexbox layout container&#10;.container {&#10;  display: flex;&#10;  flex-direction: column;&#10;  align-items: center;&#10;  padding: 20px;&#10;  max-width: 1200px;&#10;  margin: 0 auto;&#10;}&#10;&#10;// Header styling&#10;header {&#10;  text-align: center;&#10;  margin-bottom: 20px;&#10;}&#10;&#10;// Footer styling&#10;footer {&#10;  margin-top: 40px;&#10;  text-align: center;&#10;}&#10;&#10;// Section styling for spacing&#10;section {&#10;  width: 100%;&#10;  max-width: 900px;&#10;  margin: 20px 0;&#10;}&#10;" />
+              <option name="updatedContent" value="&#10;// Include theming for Angular Material with `mat.theme()`.&#10;// This Sass mixin will define CSS variables that are used for styling Angular Material&#10;// components according to the Material 3 design spec.&#10;// Learn more about theming and how to use it for your application's&#10;// custom components at https://material.angular.dev/guide/theming&#10;@use '@angular/material' as mat;&#10;&#10;// Custom Fonts&#10;$cinzel-decorative: 'Cinzel Decorative', serif;&#10;$libre-baskerville: 'Libre Baskerville', serif;&#10;$merriweather: 'Merriweather', serif;&#10;$im-fell-dw-pica: 'IM FELL DW Pica', serif;&#10;$allura: 'Allura', cursive;&#10;$edwardian-script-itc: 'Edwardian Script ITC', cursive;&#10;&#10;html {&#10;  @include mat.theme((&#10;    color: (&#10;      primary: mat.$azure-palette,&#10;      tertiary: mat.$blue-palette,&#10;    ),&#10;    typography: Roboto,&#10;    density: 0,&#10;  ));&#10;&#10;  // Default the application to a light color theme. This can be changed to&#10;  // `dark` to enable the dark color theme, or to `light dark` to defer to the&#10;  // user's system settings.&#10;  color-scheme: dark;&#10;&#10;  // Set a default background, font and text colors for the application using&#10;  // Angular Material's system-level CSS variables. Learn more about these&#10;  // variables at https://material.angular.dev/guide/system-variables&#10;  background-color: var(--mat-sys-surface);&#10;  color: var(--mat-sys-on-surface);&#10;  font: var(--mat-sys-body-medium);&#10;}/* You can add global styles to this file, and also import other style files */&#10;&#10;// Apply to the HTML and Body elements&#10;html, body { height: 100%; }&#10;body {&#10;  margin: 0;&#10;  font-family: Roboto, &quot;Helvetica Neue&quot;, sans-serif;&#10;}&#10;&#10;// Global Styling for Dark Mode&#10;body.dark-mode {&#10;  background-color: #121212;&#10;  color: #E0E0E0;&#10;}&#10;&#10;// Light Mode (system-based)&#10;body.light-mode {&#10;  background-color: #F1F1F1;&#10;  color: #333;&#10;}&#10;&#10;// Font customization for headers&#10;h1, h2, h3 {&#10;  font-family: $cinzel-decorative, serif;&#10;}&#10;&#10;// Content headers with Libre Baskerville&#10;.content-header {&#10;  font-family: $libre-baskerville, serif;&#10;  font-weight: 700;&#10;}&#10;&#10;// Handwritten text with IM FELL DW Pica&#10;.handwritten-text {&#10;  font-family: $im-fell-dw-pica, serif;&#10;  font-style: italic;&#10;}&#10;&#10;// Signatures with Allura&#10;.signature {&#10;  font-family: $allura, cursive;&#10;  font-size: 1.5rem;&#10;}&#10;&#10;// Fine signatures with Edwardian Script ITC&#10;.fine-signature {&#10;  font-family: $edwardian-script-itc, cursive;&#10;  font-size: 2rem;&#10;}&#10;&#10;// Flexbox layout container&#10;.container {&#10;  display: flex;&#10;  flex-direction: column;&#10;  align-items: center;&#10;  padding: 20px;&#10;  max-width: 1200px;&#10;  margin: 0 auto;&#10;}&#10;&#10;// Header styling&#10;header {&#10;  text-align: center;&#10;  margin-bottom: 20px;&#10;}&#10;&#10;// Footer styling&#10;footer {&#10;  margin-top: 40px;&#10;  text-align: center;&#10;}&#10;&#10;// Section styling for spacing&#10;section {&#10;  width: 100%;&#10;  max-width: 900px;&#10;  margin: 20px 0;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/main.ts">
           <value>
             <PendingDiffInfo>

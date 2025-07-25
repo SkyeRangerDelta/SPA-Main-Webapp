@@ -7,12 +7,12 @@
 @use '@angular/material' as mat;
 
 // Custom Fonts
-$cinzel-decorative: 'Cinzel Decorative', serif;
-$libre-baskerville: 'Libre Baskerville', serif;
-$merriweather: 'Merriweather', serif;
-$im-fell-dw-pica: 'IM FELL DW Pica', serif;
-$allura: 'Allura', cursive;
-$edwardian-script-itc: 'Edwardian Script ITC', cursive;
+$fine-header: 'Cinzel Decorative', serif;
+$header-text: 'Libre Baskerville', serif;
+$body-text: 'Merriweather', serif;
+$handwriting: 'IM FELL DW Pica', serif;
+$script: 'Allura', cursive;
+$script-fine: 'Luxurious Script', cursive;
 
 html {
   @include mat.theme((
@@ -41,7 +41,7 @@ html {
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: $body-text, "Helvetica Neue", sans-serif;
 }
 
 // Global Styling for Dark Mode
@@ -58,30 +58,33 @@ body.light-mode {
 
 // Font customization for headers
 h1, h2, h3 {
-  font-family: $cinzel-decorative, serif;
+  font-family: $fine-header, serif;
 }
 
 // Content headers with Libre Baskerville
 .content-header {
-  font-family: $libre-baskerville, serif;
+  font-family: $header-text, serif;
   font-weight: 700;
 }
 
 // Handwritten text with IM FELL DW Pica
 .handwritten-text {
-  font-family: $im-fell-dw-pica, serif;
+  font-family: $handwriting, serif;
+}
+
+.italic {
   font-style: italic;
 }
 
 // Signatures with Allura
 .signature {
-  font-family: $allura, cursive;
+  font-family: $script, cursive;
   font-size: 1.5rem;
 }
 
 // Fine signatures with Edwardian Script ITC
 .fine-signature {
-  font-family: $edwardian-script-itc, cursive;
+  font-family: $script-fine, cursive;
   font-size: 2rem;
 }
 

@@ -14,7 +14,7 @@
 // Imports
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import "https://deno.land/std@0.224.0/dotenv/load.ts";
-import { DBHandler } from "./API/Utilities/DBHandler.ts";
+import { DBHandler } from "./Utilities/DBHandler.ts";
 
 // Server
 const app = new Application();

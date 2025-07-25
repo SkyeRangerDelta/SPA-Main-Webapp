@@ -13,3 +13,4 @@ export class App {
     document.body.classList.toggle('light-mode');
   }
 }
+
