@@ -1,21 +1,17 @@
 <div class="container">
-  <header>
-    <h1>Sarim Port Authority</h1>
-    <button (click)="toggleDarkMode()">Toggle Dark Mode</button>
-  </header>
-
   <section>
-    <h2 class="content-header">Welcome to Sarim Port Authority</h2>
-    <p>This is a minimalistic front-end for the fictional Sarim Port Authority. It's designed with a focus on dark mode and accessibility, featuring a variety of fonts that reflect the elegance and heritage of the port city.</p>
+    <app-header></app-header>
   </section>
 
   <section>
-    <h2 class="content-header">Important Notices</h2>
-    <p class="handwritten-text">Note: This is a simulated handwritten message to convey important updates.</p>
+    <app-intro></app-intro>
+  </section>
+
+  <section>
+    <app-notice-board></app-notice-board>
   </section>
 
   <footer>
-    <p class="content-header">Sarim Portmaster</p>
-    <p class="fine-signature">Admiral Delta</p>
+    <app-footer></app-footer>
   </footer>
 </div>
