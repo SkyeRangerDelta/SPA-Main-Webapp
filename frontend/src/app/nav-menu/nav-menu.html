@@ -2,7 +2,11 @@
   <a routerLink="/home" routerLinkActive="active">Home</a>
   <a routerLink="/about" routerLinkActive="active">About</a>
   <a routerLink="/notices" routerLinkActive="active">Notices</a>
-  <a routerLink="/contact" routerLinkActive="active">Departments</a>
+  <div class="nav-menu-dropdown">
+    <a routerLink="/departments" routerLinkActive="active">Departments</a>
+    <div class="nav-sub-menu">
+      <a routerLink="/departments/harbour-registry" routerLinkActive="active">Office of the Harbour Registry</a>
+    </div>
+  </div>
   <a routerLink="/contact" routerLinkActive="active">Contact</a>
 </nav>
-
