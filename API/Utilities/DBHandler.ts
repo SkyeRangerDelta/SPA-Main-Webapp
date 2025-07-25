@@ -3,8 +3,8 @@ import { MongoClient, Database, FindOptions } from "https://deno.land/x/mongo@v0
 
 // MongoDB Handler
 export class DBHandler {
-  private mongoDBName = Deno.env.get('MONGO_DB_NAME');
-  private mongoUri = Deno.env.get("MONGODB_URI");
+  private mongoDBName = Deno.env.get('MONGO_DB');
+  private mongoUri = Deno.env.get('MONGO_URI');
 
   private client!: MongoClient;
   private database!: Database;
@@ -35,8 +35,6 @@ export class DBHandler {
       console.error('Failed to connect to MongoDB:', e );
       return false;
     }
-
-    this.mongoDBName = Deno.env.get( this.mongoDBName );
 
     if ( !this.mongoDBName ) {
       console.error('MONGO_DB_NAME not found in environment variables.');
