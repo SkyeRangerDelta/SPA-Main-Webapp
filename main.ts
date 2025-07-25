@@ -13,17 +13,7 @@
 
 // Imports
 import { Application } from "https://deno.land/x/oak/mod.ts";
-import { MongoClient } from "https://deno.land/x/mongo@v0.32.0/mod.ts";
 import "https://deno.land/std@0.224.0/dotenv/load.ts";
-
-// MongoDB Connection
-const mongoUri = Deno.env.get("MONGODB_URI");
-if (!mongoUri) {
-  throw new Error("MONGODB_URI is not set in the environment variables.");
-}
-const client = new MongoClient();
-await client.connect(mongoUri);
-const db = client.database();
 
 // Server
 const app = new Application();
