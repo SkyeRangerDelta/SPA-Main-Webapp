@@ -17,21 +17,35 @@ export class DBHandler {
 
     this.client = new MongoClient();
 
-    this.initialize().then(() => {
-      console.log('MongoDB connected.');
+    this.initialize().then(( result ) => {
+      if ( !result ) {
+        console.error( "MongoDB connection error. Please check your environment variables." );
+      }
+      else {
+        console.log('MongoDB connected.');
+      }
     });
   }
 
   private async initialize() {
-    await this.client.connect( this.mongoUri );
+    try {
+      await this.client.connect( this.mongoUri );
+    }
+    catch ( e: unknown ) {
+      console.error('Failed to connect to MongoDB:', e );
+      return false;
+    }
 
     this.mongoDBName = Deno.env.get( this.mongoDBName );
 
     if ( !this.mongoDBName ) {
-      throw new Error('MONGO_DB_NAME not found in environment variables.');
+      console.error('MONGO_DB_NAME not found in environment variables.');
+      return false;
     }
 
     this.database = this.client.database( this.mongoDBName );
+
+    return true;
   }
 
   public async selectOneById( collection: string, docId: number | string ) {
