@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,26 @@ export class DbHandler {
 
   constructor ( private http: HttpClient ) {  }
 
-  getNotices() {
-    return this.http.get(this.noticesEndpoint);
+  getNotices( limit?: number ) {
+    return this.http.get(
+      `${this.noticesEndpoint}?limit=${limit || 5}`,
+    ).pipe(
+      map( (data: any) => {
+        // Assuming the data is an array of notices
+        return data.map((notice: any) => {
+          return {
+            id: notice.id,
+            title: notice.title,
+            content: notice.content,
+            date: new Date(notice.date)
+          };
+        });
+      } ),
+      catchError( ( e: unknown ) => {
+        console.error('Error fetching notices:', e);
+        return [];
+      } )
+    );
   }
 
   getRecords() {
