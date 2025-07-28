@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DbHandler } from './db-handler.ts';
+import { DbHandlerService } from './db-handler-service.ts';
 
-describe('DbHandler', () => {
-  let service: DbHandler;
+describe('DbHandlerService', () => {
+  let service: DbHandlerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DbHandler);
+    service = TestBed.inject(DbHandlerService);
   });
 
   it('should be created', () => {

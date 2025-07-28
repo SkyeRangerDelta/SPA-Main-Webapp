@@ -1,2 +1,19 @@
 <h2 class="content-header">Important Notices</h2>
-<p class="handwritten-text">Note: This is a simulated handwritten message to convey important updates.</p>
+<div class="notice-board-list">
+  @if ( notices && notices.length > 0 ) {
+    @for ( notice of notices; track notice.id ) {
+      <div class="notice-blurb notice-{{ notice.class }}">
+        <h3 class="notice-title">{{ notice.title }}</h3>
+        <p class="notice-content">{{ notice.content }}</p>
+        <p class="notice-date">Posted on: {{ notice.createdAt }}</p>
+      </div>
+    }
+  }
+  @else {
+    <ng-container [ngTemplateOutlet]="noNotices"></ng-container>
+  }
+
+</div>
+<ng-template #noNotices>
+  <p class="no-notices">No notices available at the moment.</p>
+</ng-template>

@@ -8,7 +8,14 @@ import { ToggleThemeButton } from './toggle-theme-button/toggle-theme-button';
 
 @Component({
   selector: 'app-root',
-  imports: [ RouterOutlet, Header, Intro, NoticeBoard, Footer, ToggleThemeButton ],
+  imports: [
+    RouterOutlet,
+    Header,
+    Intro,
+    NoticeBoard,
+    Footer,
+    ToggleThemeButton
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DbHandler {
+export class DbHandlerService {
 
   private apiEndpoint = '/api/v1/';
   private noticesEndpoint = this.apiEndpoint + 'GetNotices';
@@ -18,6 +18,10 @@ export class DbHandler {
       `${this.noticesEndpoint}?limit=${limit || 5}`,
     ).pipe(
       map( (data: any) => {
+        if ( !data || !Array.isArray(data) ) {
+          return [];
+        }
+
         // Assuming the data is an array of notices
         return data.map((notice: any) => {
           return {
