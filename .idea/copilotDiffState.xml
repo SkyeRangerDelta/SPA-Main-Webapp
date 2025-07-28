@@ -3,30 +3,12 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/.env">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/.env" />
-              <option name="originalContent" value="&#10;" />
-              <option name="updatedContent" value="# Environment variables for Sarim Port Authority WebApp&#10;# Example:&#10;# API_URL=https://api.sarimport.com&#10;# PORT=3000&#10;MONGODB_URI=mongodb://localhost:27017/sarim_port" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/app.html">
           <value>
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.html" />
               <option name="originalContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;section&gt;&#10;    &lt;app-header&gt;&lt;/app-header&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-intro&gt;&lt;/app-intro&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;app-footer&gt;&lt;/app-footer&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;&#10;" />
               <option name="updatedContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;section&gt;&#10;    &lt;app-header&gt;&lt;/app-header&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-intro&gt;&lt;/app-intro&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;app-toggle-theme-button&gt;&lt;/app-toggle-theme-button&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;app-footer&gt;&lt;/app-footer&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/app.ts">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.ts" />
-              <option name="originalContent" value="import { Component, signal } from '@angular/core';&#10;import { RouterOutlet } from '@angular/router';&#10;&#10;@Component({&#10;  selector: 'app-root',&#10;  imports: [RouterOutlet],&#10;  templateUrl: './app.html',&#10;  styleUrl: './app.scss'&#10;})&#10;export class App {&#10;  toggleDarkMode() {&#10;    document.body.classList.toggle('dark-mode');&#10;    document.body.classList.toggle('light-mode');&#10;  }&#10;}&#10;" />
-              <option name="updatedContent" value="import { Component, signal } from '@angular/core';&#10;import { RouterOutlet } from '@angular/router';&#10;&#10;@Component({&#10;  selector: 'app-root',&#10;  imports: [RouterOutlet],&#10;  templateUrl: './app.html',&#10;  styleUrl: './app.scss'&#10;})&#10;export class App {&#10;  toggleDarkMode() {&#10;    document.body.classList.toggle('dark-mode');&#10;    document.body.classList.toggle('light-mode');&#10;  }&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
@@ -51,24 +33,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/header/header.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/header/header.html" />
-              <option name="originalContent" value="&lt;header&gt;&#10;  &lt;h1&gt;Sarim Port Authority&lt;/h1&gt;&#10;  &lt;app-toggle-theme-button&gt;&lt;/app-toggle-theme-button&gt;&#10;&lt;/header&gt;&#10;" />
-              <option name="updatedContent" value="&lt;header&gt;&#10;  &lt;h1&gt;Sarim Port Authority&lt;/h1&gt;&#10;&lt;/header&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/header/header.scss">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/header/header.scss" />
-              <option name="originalContent" value="h1 {&#10;  font-size: 4rem;&#10;}&#10;&#10;header-subtitle {&#10;  font-size: 1.5rem;&#10;  color: var(--mat-sys-on-surface-variant);&#10;  margin-top: 0.5rem;&#10;}&#10;" />
-              <option name="updatedContent" value="h1 {&#10;  font-size: 4rem;&#10;}&#10;&#10;.header-subtitle {&#10;  text-align: left;&#10;  margin-left: 24px;&#10;  margin-top: -12px;&#10;  font-size: 1.2rem;&#10;  font-weight: 400;&#10;  color: #6c7a89;&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/intro.html">
           <value>
             <PendingDiffInfo>
@@ -83,24 +47,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/nav-menu/nav-menu.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/nav-menu/nav-menu.html" />
-              <option name="originalContent" value="&lt;nav class=&quot;nav-menu&quot;&gt;&#10;  &lt;a routerLink=&quot;/home&quot; routerLinkActive=&quot;active&quot;&gt;Home&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/about&quot; routerLinkActive=&quot;active&quot;&gt;About&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/notices&quot; routerLinkActive=&quot;active&quot;&gt;Notices&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/contact&quot; routerLinkActive=&quot;active&quot;&gt;Departments&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/contact&quot; routerLinkActive=&quot;active&quot;&gt;Contact&lt;/a&gt;&#10;&lt;/nav&gt;&#10;&#10;" />
-              <option name="updatedContent" value="&lt;nav class=&quot;nav-menu&quot;&gt;&#10;  &lt;a routerLink=&quot;/home&quot; routerLinkActive=&quot;active&quot;&gt;Home&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/about&quot; routerLinkActive=&quot;active&quot;&gt;About&lt;/a&gt;&#10;  &lt;a routerLink=&quot;/notices&quot; routerLinkActive=&quot;active&quot;&gt;Notices&lt;/a&gt;&#10;  &lt;div class=&quot;nav-menu-dropdown&quot;&gt;&#10;    &lt;a routerLink=&quot;/departments&quot; routerLinkActive=&quot;active&quot;&gt;Departments&lt;/a&gt;&#10;    &lt;div class=&quot;nav-sub-menu&quot;&gt;&#10;      &lt;a routerLink=&quot;/departments/harbour-registry&quot; routerLinkActive=&quot;active&quot;&gt;Office of the Harbour Registry&lt;/a&gt;&#10;    &lt;/div&gt;&#10;  &lt;/div&gt;&#10;  &lt;a routerLink=&quot;/contact&quot; routerLinkActive=&quot;active&quot;&gt;Contact&lt;/a&gt;&#10;&lt;/nav&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/nav-menu/nav-menu.scss">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/nav-menu/nav-menu.scss" />
-              <option name="originalContent" value=".nav-menu-dropdown {&#10;  position: relative;&#10;  display: inline-block;&#10;}&#10;&#10;.nav-sub-menu {&#10;  display: none;&#10;  position: absolute;&#10;  left: 0;&#10;  top: 100%;&#10;  min-width: 220px;&#10;  background: var(--mat-sys-surface);&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.12);&#10;  border-radius: 6px;&#10;  padding: 8px 0;&#10;  z-index: 10;&#10;}&#10;&#10;.nav-menu-dropdown:hover .nav-sub-menu {&#10;  display: block;&#10;}&#10;&#10;.nav-sub-menu a {&#10;  display: block;&#10;  padding: 8px 24px;&#10;  color: inherit;&#10;  text-decoration: none;&#10;  font-size: 1rem;&#10;  border-radius: 0;&#10;  transition: background 0.2s, color 0.2s;&#10;}&#10;&#10;.nav-sub-menu a:hover,&#10;.nav-sub-menu a.active {&#10;  background: var(--mat-sys-primary-container);&#10;  color: var(--mat-sys-on-primary-container);&#10;}&#10;&#10;body.dark-mode .nav-sub-menu {&#10;  background: #222b36;&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.32);&#10;}&#10;body.dark-mode .nav-sub-menu a {&#10;  color: #90caf9;&#10;}&#10;body.dark-mode .nav-sub-menu a:hover,&#10;body.dark-mode .nav-sub-menu a.active {&#10;  background: #1565c0;&#10;  color: #fff;&#10;}&#10;&#10;body.light-mode .nav-sub-menu {&#10;  background: #fff;&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.12);&#10;}&#10;body.light-mode .nav-sub-menu a {&#10;  color: #1976d2;&#10;}&#10;body.light-mode .nav-sub-menu a:hover,&#10;body.light-mode .nav-sub-menu a.active {&#10;  background: #e3f2fd;&#10;  color: #1976d2;&#10;}&#10;" />
-              <option name="updatedContent" value=".nav-menu-dropdown {&#10;  position: relative;&#10;  display: inline-block;&#10;}&#10;&#10;.nav-sub-menu {&#10;  display: none;&#10;  position: absolute;&#10;  left: 0;&#10;  top: 100%;&#10;  min-width: 220px;&#10;  background: var(--mat-sys-surface);&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.12);&#10;  border-radius: 6px;&#10;  padding: 8px 0;&#10;  z-index: 10;&#10;}&#10;&#10;.nav-menu-dropdown:hover .nav-sub-menu {&#10;  display: block;&#10;}&#10;&#10;.nav-sub-menu a {&#10;  display: block;&#10;  padding: 8px 24px;&#10;  color: inherit;&#10;  text-decoration: none;&#10;  font-size: 1rem;&#10;  border-radius: 0;&#10;  transition: background 0.2s, color 0.2s;&#10;}&#10;&#10;.nav-sub-menu a:hover,&#10;.nav-sub-menu a.active {&#10;  background: var(--mat-sys-primary-container);&#10;  color: var(--mat-sys-on-primary-container);&#10;}&#10;&#10;body.dark-mode .nav-sub-menu {&#10;  background: #222b36;&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.32);&#10;}&#10;body.dark-mode .nav-sub-menu a {&#10;  color: #90caf9;&#10;}&#10;body.dark-mode .nav-sub-menu a:hover,&#10;body.dark-mode .nav-sub-menu a.active {&#10;  background: #1565c0;&#10;  color: #fff;&#10;}&#10;&#10;body.light-mode .nav-sub-menu {&#10;  background: #f8f9fa;&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.10);&#10;}&#10;body.light-mode .nav-sub-menu a {&#10;  color: #1a237e;&#10;}&#10;body.light-mode .nav-sub-menu a:hover,&#10;body.light-mode .nav-sub-menu a.active {&#10;  background: #e3f2fd;&#10;  color: #1976d2;&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/notices.html">
           <value>
             <PendingDiffInfo>
@@ -112,23 +58,6 @@
           <value>
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notices.ts" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/toggle-theme-button/toggle-theme-button.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/toggle-theme-button/toggle-theme-button.html" />
-              <option name="originalContent" value="&lt;button class=&quot;toggle-theme-fab&quot; (click)=&quot;toggleDarkMode()&quot; aria-label=&quot;Toggle theme&quot;&gt;&#10;  &lt;span class=&quot;material-icons&quot;&gt;brightness_6&lt;/span&gt;&#10;&lt;/button&gt;&#10;&#10;" />
-              <option name="updatedContent" value="&lt;button class=&quot;toggle-theme-fab&quot; (click)=&quot;toggleDarkMode()&quot; aria-label=&quot;Toggle theme&quot;&gt;&#10;  &lt;span class=&quot;material-icons&quot;&gt;anchor&lt;/span&gt;&#10;&lt;/button&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/toggle-theme-button/toggle-theme-button.scss">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/toggle-theme-button/toggle-theme-button.scss" />
-              <option name="updatedContent" value=".toggle-theme-fab {&#10;  position: fixed;&#10;  left: 32px;&#10;  bottom: 32px;&#10;  z-index: 1000;&#10;  background: var(--mat-sys-primary);&#10;  color: var(--mat-sys-on-primary);&#10;  border: none;&#10;  border-radius: 50%;&#10;  width: 56px;&#10;  height: 56px;&#10;  box-shadow: 0 2px 8px rgba(0,0,0,0.2);&#10;  display: flex;&#10;  align-items: center;&#10;  justify-content: center;&#10;  font-size: 2rem;&#10;  cursor: pointer;&#10;  transition: background 0.2s;&#10;}&#10;.toggle-theme-fab:hover {&#10;  background: var(--mat-sys-primary-container);&#10;}" />
             </PendingDiffInfo>
           </value>
         </entry>

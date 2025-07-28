@@ -43,6 +43,8 @@ export class DBHandler {
 
     this.database = this.client.database( this.mongoDBName );
 
+    await this.validateDb();
+
     return true;
   }
 
@@ -64,6 +66,33 @@ export class DBHandler {
 
   public async updateOne( collection: string, filter: object, update: object ) {
     return await this.database.collection( collection ).updateOne( filter, update );
+  }
+
+  private async validateDb() {
+    // Check if the database is connected
+    if (!this.database) {
+      throw new Error('Database is not initialized/created.');
+    }
+
+    // Check if required collections exist
+    const collections = await this.database.listCollections().toArray();
+    const requiredCollections = [ 'SPA_Status', 'SPA_Notices', 'SPA_Records' ]; // Example collections
+    for (const collection of requiredCollections) {
+      if (!collections.some(c => c.name === collection)) {
+        // Create missing collections
+        try {
+          await this.database.createCollection( collection );
+          console.log( `Collection ${ collection } created.` );
+        }
+        catch ( error: unknown ) {
+          console.error(`Error creating collection ${collection}:`, error);
+          return false;
+        }
+      }
+    }
+
+    console.log( "Database validation checks done." );
+    return true;
   }
 
   // Close
