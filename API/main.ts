@@ -15,6 +15,7 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import "https://deno.land/std@0.224.0/dotenv/load.ts";
 import { DBHandler } from "./Utilities/DBHandler.ts";
+import { MainRouter } from "./Routes/MainRouter.ts";
 
 // Server
 const app = new Application();
@@ -39,7 +40,9 @@ app.use( async ( ctx, next ) => {
 });
 
 // Pages/Routes
-app.use( async ( ctx ) => {
+app.use( MainRouter.routes(), MainRouter.allowedMethods() );
+
+app.use( async ( ctx, next ) => {
   const indexPath = Deno.cwd() + "/frontend/dist/spa-main-webapp/browser";
 
   try {
@@ -52,6 +55,7 @@ app.use( async ( ctx ) => {
     console.error("Error serving index.html:", error);
     ctx.response.status = 500;
     ctx.response.body = "Internal Server Error";
+    await next();
   }
 });
 
