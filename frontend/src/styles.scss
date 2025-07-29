@@ -48,6 +48,11 @@ $color-warning-date-dark: #ffd54f;
 $color-nav-link-dark: #90caf9;
 $color-nav-link-hover-dark: #1565c0;
 
+$color-blurb-bg-light: #f7fafd;
+$color-blurb-bg-dark: #232b36;
+$color-blurb-border-light: #cfd8dc;
+$color-blurb-border-dark: #374151;
+
 $color-no-notices: #888;
 
 // Custom Fonts
@@ -258,12 +263,13 @@ body.light-mode .nav-sub-menu a.active {
 }
 
 .notice-blurb {
-  background: $color-surface-dark;
+  background: $color-blurb-bg-dark;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   padding: 1.25rem 1.5rem;
   transition: background 0.2s, color 0.2s;
-  border-left: 6px solid $color-primary-dark;
+  border-left: 6px solid $color-on-surface-dark;
+  color: $color-on-surface-dark;
 
   .notice-title {
     font-family: $header-text, serif;
@@ -288,17 +294,18 @@ body.light-mode .nav-sub-menu a.active {
 
 // Light mode overrides
 body.light-mode .notice-blurb {
-  background: $color-surface-light;
-  border-left-color: $color-primary-light;
+  background: $color-blurb-bg-light;
+  border-left-color: $color-blurb-border-light;
+  color: $color-on-surface-light;
 
   .notice-title {
     color: $color-primary-light;
   }
   .notice-content {
-    color: $color-primary-light;
+    color: $color-on-surface-light;
   }
   .notice-date {
-    color: $color-on-surface-light;
+    color: $color-on-surface-variant-light;
   }
 }
 
@@ -328,13 +335,13 @@ body.dark-mode .notice-blurb {
 // Info notice style
 .notice-blurb.notice-info {
   border-left-color: $color-info-light;
-  background: $color-info-bg-light;
+  background: lighten($color-info-bg-light, 8%);
   .notice-title { color: $color-info-title-light; }
   .notice-content { color: $color-info-content-light; }
   .notice-date { color: $color-info-date-light; }
 }
 body.dark-mode .notice-blurb.notice-info {
-  background: $color-info-bg-dark;
+  background: darken($color-info-bg-dark, 10%);
   border-left-color: $color-info-dark;
   .notice-title { color: $color-info-title-dark; }
   .notice-content { color: $color-info-content-dark; }
@@ -344,13 +351,13 @@ body.dark-mode .notice-blurb.notice-info {
 // Warning notice style
 .notice-blurb.notice-warning {
   border-left-color: $color-warning-light;
-  background: $color-warning-bg-light;
+  background: lighten($color-warning-bg-light, 6%);
   .notice-title { color: $color-warning-title-light; }
   .notice-content { color: $color-warning-content-light; }
   .notice-date { color: $color-warning-date-light; }
 }
 body.dark-mode .notice-blurb.notice-warning {
-  background: $color-warning-bg-dark;
+  background: darken($color-warning-bg-dark, 8%);
   border-left-color: $color-warning-dark;
   .notice-title { color: $color-warning-title-dark; }
   .notice-content { color: $color-warning-content-dark; }
