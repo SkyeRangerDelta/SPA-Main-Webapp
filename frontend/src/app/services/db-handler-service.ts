@@ -39,6 +39,32 @@ export class DbHandlerService {
     );
   }
 
+  getNoticeById(id: number) {
+    return this.http.get(`${this.noticesEndpoint}?id=${id}`).pipe(
+      map((data: any) => {
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+          return null;
+        }
+        // If API returns an array, take the first item
+        const notice = Array.isArray(data) ? data[0] : data;
+        return {
+          id: notice.id,
+          title: notice.title,
+          content: notice.content,
+          createdAt: new Date(notice.createdAt || notice.date),
+          updatedAt: new Date(notice.updatedAt || notice.date),
+          createdAtFriendly: notice.createdAtFriendly || '',
+          updatedAtFriendly: notice.updatedAtFriendly || '',
+          class: notice.class || ''
+        };
+      }),
+      catchError((e: unknown) => {
+        console.error('Error fetching notice by id:', e);
+        return [null];
+      })
+    );
+  }
+
   getRecords() {
     return this.http.get(this.recordsEndpoint);
   }

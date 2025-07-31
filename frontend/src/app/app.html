@@ -2,14 +2,20 @@
   <section>
     <app-header></app-header>
   </section>
+  @if ( showMainContent ) {
+    <ng-container>
+      <section>
+        <app-intro></app-intro>
+      </section>
 
-  <section>
-    <app-intro></app-intro>
-  </section>
-
-  <section>
-    <app-notice-board></app-notice-board>
-  </section>
+      <section>
+        <app-notice-board></app-notice-board>
+      </section>
+    </ng-container>
+  }
+  @else {
+    <ng-container [ngTemplateOutlet]="articleOnly"></ng-container>
+  }
 
   <app-toggle-theme-button></app-toggle-theme-button>
 
@@ -17,3 +23,7 @@
     <app-footer></app-footer>
   </footer>
 </div>
+
+<ng-template #articleOnly>
+  <router-outlet></router-outlet>
+</ng-template>
