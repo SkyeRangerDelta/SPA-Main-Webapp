@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { DbHandlerService } from '../services/db-handler-service';
 import { Notice } from '../TypeDefs';
 import { NgTemplateOutlet } from '@angular/common';
+import { NoticeBlurb } from '../notice-blurb/notice-blurb';
 
 @Component({
   selector: 'app-notice-board',
   imports: [
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    NoticeBlurb
   ],
   templateUrl: './notice-board.html',
   styleUrl: './notice-board.scss'
@@ -34,7 +36,7 @@ export class NoticeBoard {
             updatedAtFriendly: new Date().toDateString(),
             createdAt: new Date(),
             updatedAt: new Date(),
-            class: 'info'
+            class: 'critical'
           } as Notice
         ]
       }

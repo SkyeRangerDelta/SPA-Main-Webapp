@@ -22,6 +22,11 @@ $color-dark-link-accent: #90caf9;
 $color-dark-text: #e3e2e6;
 $color-dark-accent: #d7b377;
 
+// Specific-purpose colors
+$color-blurb-border-warning: #ff9800; // Orange for warnings
+$color-blurb-border-info: #2196f3; // Blue for informational notices
+$color-blurb-border-critical: #f44336; // Red for critical notices
+
 // Custom Fonts
 $fine-header: 'Cinzel Decorative', serif;
 $header-text: 'Libre Baskerville', serif;
@@ -237,8 +242,8 @@ body.light-mode .nav-sub-menu a.active {
 }
 
 .notice-board-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   padding: 1.5rem 0;
 }
@@ -274,6 +279,18 @@ body.light-mode .nav-sub-menu a.active {
   }
 }
 
+.notice-blurb.notice-warning {
+  border-left-color: $color-blurb-border-warning;
+}
+
+.notice-blurb.notice-info {
+  border-left-color: $color-blurb-border-info;
+}
+
+.notice-blurb.notice-critical {
+  border-left-color: $color-blurb-border-critical;
+}
+
 // Light Mode Overrides
 body.light-mode .notice-blurb {
   background: $color-light-surface;
@@ -307,7 +324,7 @@ body.dark-mode .notice-blurb {
   }
 
   .notice-date {
-    color: lighten($color-dark-text, 20%);
+    color: $color-dark-text;
   }
 }
 
@@ -317,39 +334,5 @@ body.dark-mode .notice-blurb {
   color: $color-light-link-accent;
   font-style: italic;
   margin: 2rem 0;
-}
-
-// Info Notice
-.notice-blurb.notice-info {
-  border-left-color: desaturate($color-light-link-accent, 20%);
-  background: lighten($color-light-link-accent, 48%); // pastel blue bg
-  .notice-title   { color: $color-light-link-accent; }
-  .notice-content { color: $color-light-text; }
-  .notice-date    { color: darken($color-light-link-accent, 30%); }
-}
-
-body.dark-mode .notice-blurb.notice-info {
-  background: darken($color-dark-link-accent, 20%);
-  border-left-color: $color-dark-link-accent;
-  .notice-title   { color: $color-dark-link-accent; }
-  .notice-content { color: $color-dark-text; }
-  .notice-date    { color: lighten($color-dark-link-accent, 20%); }
-}
-
-// Warning Notice
-.notice-blurb.notice-warning {
-  border-left-color: $color-light-accent;
-  background: lighten($color-light-accent, 45%);
-  .notice-title   { color: $color-light-accent; }
-  .notice-content { color: $color-light-text; }
-  .notice-date    { color: darken($color-light-accent, 25%); }
-}
-
-body.dark-mode .notice-blurb.notice-warning {
-  background: darken($color-dark-accent, 20%);
-  border-left-color: $color-dark-accent;
-  .notice-title   { color: $color-dark-accent; }
-  .notice-content { color: $color-dark-text; }
-  .notice-date    { color: lighten($color-dark-accent, 10%); }
 }
 

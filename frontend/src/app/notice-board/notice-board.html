@@ -2,17 +2,12 @@
 <div class="notice-board-list">
   @if ( notices && notices.length > 0 ) {
     @for ( notice of notices; track notice.id ) {
-      <div class="notice-blurb notice-{{ notice.class }}">
-        <h3 class="notice-title">{{ notice.title }}</h3>
-        <p class="notice-content">{{ notice.content }}</p>
-        <p class="notice-date">Posted on: {{ notice.createdAt }}</p>
-      </div>
+      <app-notice-blurb [noticeData]="notice" ></app-notice-blurb>
     }
   }
   @else {
     <ng-container [ngTemplateOutlet]="noNotices"></ng-container>
   }
-
 </div>
 <ng-template #noNotices>
   <p class="no-notices">No notices available at the moment.</p>
