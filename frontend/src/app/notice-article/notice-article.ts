@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DbHandlerService } from '../services/db-handler-service';
-import { Notice } from '../TypeDefs';
+import { Notice, NoticeRes } from '../TypeDefs';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
@@ -22,17 +22,13 @@ export class NoticeArticle {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.dbService.getNoticeById(id).subscribe({
-        next: (notice: Notice | null) => {
-          this.notice = notice;
-          this.loading = false;
-          if (!notice) this.error = 'Notice not found.';
-        },
-        error: () => {
-          this.error = 'Error loading notice.';
+      this.dbService.getNoticeById(id).subscribe( (noticeRes: NoticeRes) => {
+        if ( !noticeRes.success || !noticeRes || !noticeRes.notice ) {
+          console.error('Error fetching notice:', noticeRes.message);
+          this.error = 'Notice not found.';
           this.loading = false;
         }
-      });
+      } );
     } else {
       this.error = 'Invalid notice ID.';
       this.loading = false;

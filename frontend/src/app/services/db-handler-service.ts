@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
+import { NoticeRes } from '../TypeDefs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,28 +40,37 @@ export class DbHandlerService {
     );
   }
 
-  getNoticeById(id: number) {
+  getNoticeById(id: number): Observable<NoticeRes> {
     return this.http.get(`${this.noticesEndpoint}?id=${id}`).pipe(
       map((data: any) => {
-        if (!data || (Array.isArray(data) && data.length === 0)) {
-          return null;
-        }
-        // If API returns an array, take the first item
-        const notice = Array.isArray(data) ? data[0] : data;
         return {
-          id: notice.id,
-          title: notice.title,
-          content: notice.content,
-          createdAt: new Date(notice.createdAt || notice.date),
-          updatedAt: new Date(notice.updatedAt || notice.date),
-          createdAtFriendly: notice.createdAtFriendly || '',
-          updatedAtFriendly: notice.updatedAtFriendly || '',
-          class: notice.class || ''
-        };
+          status: data.status,
+          message: data.message,
+          success: data.success,
+          notice: data.notice || null
+        } as NoticeRes;
       }),
-      catchError((e: unknown) => {
+      catchError(( e: any ) => {
         console.error('Error fetching notice by id:', e);
-        return [null];
+
+        if ( e.status === 500 ) {
+          return of({
+            status: 500,
+            message: 'Error fetching notice',
+            success: false,
+            notice: null
+          } as NoticeRes
+          );
+        }
+
+        return of(
+          {
+            status: e.status || 500,
+            message: e.message || 'Unknown error occurred',
+            success: false,
+            notice: null
+          } as NoticeRes
+        );
       })
     );
   }

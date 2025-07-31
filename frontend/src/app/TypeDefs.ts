@@ -8,3 +8,10 @@ export interface Notice {
   updatedAtFriendly: string;
   class: string;
 }
+
+export interface NoticeRes {
+  status: number;
+  message: string;
+  success: boolean;
+  notice?: Notice | null;
+}
