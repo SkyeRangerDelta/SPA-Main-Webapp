@@ -3,15 +3,6 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/frontend/src/app/app.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.html" />
-              <option name="originalContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;section&gt;&#10;    &lt;app-header&gt;&lt;/app-header&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-intro&gt;&lt;/app-intro&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;app-footer&gt;&lt;/app-footer&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;&#10;" />
-              <option name="updatedContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;section&gt;&#10;    &lt;app-header&gt;&lt;/app-header&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-intro&gt;&lt;/app-intro&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;app-toggle-theme-button&gt;&lt;/app-toggle-theme-button&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;app-footer&gt;&lt;/app-footer&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/footer.ts">
           <value>
             <PendingDiffInfo>
