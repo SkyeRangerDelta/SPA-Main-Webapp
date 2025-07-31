@@ -345,7 +345,6 @@ body.light-mode .nav-sub-menu a.active {
 // Light Mode Overrides
 body.light-mode .notice-blurb {
   background: $color-light-surface;
-  border-left-color: $color-light-text;
   color: $color-light-text;
 
   .notice-title {
@@ -364,7 +363,6 @@ body.light-mode .notice-blurb {
 // Dark Mode Enhancements (optional redundancy)
 body.dark-mode .notice-blurb {
   background: $color-dark-surface;
-  border-left-color: $color-dark-accent;
 
   .notice-title {
     color: $color-dark-accent;
