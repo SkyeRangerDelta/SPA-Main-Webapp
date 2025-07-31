@@ -248,6 +248,13 @@ body.light-mode .nav-sub-menu a.active {
   padding: 1.5rem 0;
 }
 
+.notice-blurb-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
 // Base Blurb Styling
 .notice-blurb {
   background: $color-dark-surface;
@@ -272,10 +279,54 @@ body.light-mode .nav-sub-menu a.active {
     color: $color-dark-text;
   }
 
-  .notice-date {
-    font-size: 0.95rem;
-    color: lighten($color-dark-text, 20%);
-    font-style: italic;
+  .notice-date-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    min-height: 64px;
+    padding: 0.25rem;
+    border-radius: 6px;
+    background: lighten($color-dark-surface, 6%);
+    color: $color-dark-accent;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: $body-text;
+    line-height: 1.1;
+
+    .date-month {
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+    }
+
+    .date-day {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: 2px 0;
+    }
+
+    .date-month-time {
+      font-size: 0.65rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .date-year {
+      font-size: 0.6rem;
+      font-weight: 400;
+      opacity: 0.65;
+      margin-top: 2px;
+    }
+  }
+
+  body.light-mode .notice-date-icon {
+    background: darken($color-light-surface, 4%);
+    color: $color-light-accent;
   }
 }
 

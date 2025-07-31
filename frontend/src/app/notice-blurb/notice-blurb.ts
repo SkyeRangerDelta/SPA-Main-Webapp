@@ -28,6 +28,12 @@ export class NoticeBlurb {
   updatedAtFriendly = this.updatedAt.toLocaleDateString() + ' ' + this.updatedAt.toLocaleTimeString();
   class = this.noticeData.class || 'notice-blurb-default';
 
+  createdAtDay = this.noticeData.createdAt.getDate().toString();
+  createdAtMonth = this.noticeData.createdAt.toLocaleString('en-US', { month: 'short' });
+  createdAtYear = this.noticeData.createdAt.getFullYear().toString();
+
+  createdAtRest = this.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes['noticeData'] && changes['noticeData'].currentValue ) {
       const data = changes['noticeData'].currentValue;
