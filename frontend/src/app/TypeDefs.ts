@@ -15,3 +15,10 @@ export interface NoticeRes {
   success: boolean;
   notice?: Notice | null;
 }
+
+export interface Department {
+  id: number;
+  name: string;
+  description: string;
+  href: string;
+}

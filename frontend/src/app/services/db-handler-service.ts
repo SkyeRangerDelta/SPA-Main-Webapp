@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
-import { NoticeRes } from '../TypeDefs';
+import { Department, NoticeRes } from '../TypeDefs';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +73,14 @@ export class DbHandlerService {
         );
       })
     );
+  }
+
+  getDepartments() {
+    return this.http.get(`${this.apiEndpoint}GetDepartments`).pipe(
+      map((data: any) => {
+        return [];
+      }
+    ));
   }
 
   getRecords() {
