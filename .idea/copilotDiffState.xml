@@ -3,30 +3,12 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/frontend/src/app/app.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.html" />
-              <option name="originalContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;section&gt;&#10;    &lt;app-header&gt;&lt;/app-header&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;router-outlet&gt;&lt;/router-outlet&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-intro&gt;&lt;/app-intro&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;section&gt;&#10;    &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;  &lt;/section&gt;&#10;&#10;  &lt;app-toggle-theme-button&gt;&lt;/app-toggle-theme-button&gt;&#10;&#10;  &lt;footer&gt;&#10;    &lt;app-footer&gt;&lt;/app-footer&gt;&#10;  &lt;/footer&gt;&#10;&lt;/div&gt;&#10;" />
-              <option name="updatedContent" value="&lt;div class=&quot;container&quot;&gt;&#10;  &lt;ng-container *ngIf=&quot;showMainContent; else articleOnly&quot;&gt;&#10;    &lt;section&gt;&#10;      &lt;app-header&gt;&lt;/app-header&gt;&#10;    &lt;/section&gt;&#10;&#10;    &lt;section&gt;&#10;      &lt;app-intro&gt;&lt;/app-intro&gt;&#10;    &lt;/section&gt;&#10;&#10;    &lt;section&gt;&#10;      &lt;app-notice-board&gt;&lt;/app-notice-board&gt;&#10;    &lt;/section&gt;&#10;&#10;    &lt;app-toggle-theme-button&gt;&lt;/app-toggle-theme-button&gt;&#10;&#10;    &lt;footer&gt;&#10;      &lt;app-footer&gt;&lt;/app-footer&gt;&#10;    &lt;/footer&gt;&#10;  &lt;/ng-container&gt;&#10;  &lt;ng-template #articleOnly&gt;&#10;    &lt;router-outlet&gt;&lt;/router-outlet&gt;&#10;  &lt;/ng-template&gt;&#10;&lt;/div&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/app.routes.ts">
           <value>
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.routes.ts" />
               <option name="originalContent" value="import { Routes } from '@angular/router';&#10;&#10;export const routes: Routes = [&#10;];&#10;" />
               <option name="updatedContent" value="import { Routes } from '@angular/router';&#13;&#10;import { NoticeArticle } from './notice-article/notice-article';&#13;&#10;&#13;&#10;export const routes: Routes = [&#13;&#10;  { path: 'notice/:id', component: NoticeArticle },&#13;&#10;];" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/app.ts">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/app.ts" />
-              <option name="originalContent" value="import { Component } from '@angular/core';&#10;import { RouterOutlet } from '@angular/router';&#10;import { Header } from './header/header';&#10;import { Intro } from './intro/intro';&#10;import { NoticeBoard } from './notice-board/notice-board';&#10;import { Footer } from './footer/footer';&#10;import { ToggleThemeButton } from './toggle-theme-button/toggle-theme-button';&#10;&#10;@Component({&#10;  selector: 'app-root',&#10;  imports: [&#10;    RouterOutlet,&#10;    Header,&#10;    Intro,&#10;    NoticeBoard,&#10;    Footer,&#10;    ToggleThemeButton&#10;  ],&#10;  templateUrl: './app.html',&#10;  styleUrl: './app.scss'&#10;})&#10;export class App {&#10;&#10;}&#10;&#10;" />
-              <option name="updatedContent" value="import { Component } from '@angular/core';&#13;&#10;import { RouterOutlet, Router } from '@angular/router';&#13;&#10;import { Header } from './header/header';&#13;&#10;import { Intro } from './intro/intro';&#13;&#10;import { NoticeBoard } from './notice-board/notice-board';&#13;&#10;import { Footer } from './footer/footer';&#13;&#10;import { ToggleThemeButton } from './toggle-theme-button/toggle-theme-button';&#13;&#10;&#13;&#10;@Component({&#13;&#10;  selector: 'app-root',&#13;&#10;  imports: [&#13;&#10;    RouterOutlet,&#13;&#10;    Header,&#13;&#10;    Intro,&#13;&#10;    NoticeBoard,&#13;&#10;    Footer,&#13;&#10;    ToggleThemeButton&#13;&#10;  ],&#13;&#10;  templateUrl: './app.html',&#13;&#10;  styleUrl: './app.scss'&#13;&#10;})&#13;&#10;export class App {&#13;&#10;  showMainContent = true;&#13;&#10;&#13;&#10;  constructor(private router: Router) {&#13;&#10;    this.router.events.subscribe(() =&gt; {&#13;&#10;      this.updateContentVisibility();&#13;&#10;    });&#13;&#10;    this.updateContentVisibility();&#13;&#10;  }&#13;&#10;&#13;&#10;  private updateContentVisibility() {&#13;&#10;    const url = this.router.url;&#13;&#10;    // Hide main content if on /notice/:id&#13;&#10;    this.showMainContent = !/^\/notice\/[0-9]+$/.test(url);&#13;&#10;  }&#13;&#10;}" />
             </PendingDiffInfo>
           </value>
         </entry>
@@ -65,33 +47,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/notice-article/notice-article.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notice-article/notice-article.html" />
-              <option name="originalContent" value="&lt;p&gt;notice-article works!&lt;/p&gt;&#10;" />
-              <option name="updatedContent" value="&lt;div class=&quot;notice-article&quot; *ngIf=&quot;!loading &amp;&amp; notice; else loadingOrError&quot;&gt;&#13;&#10;  &lt;h2 class=&quot;notice-title&quot;&gt;{{ notice.title }}&lt;/h2&gt;&#13;&#10;  &lt;div class=&quot;notice-meta&quot;&gt;&#13;&#10;    &lt;span class=&quot;notice-date&quot;&gt;Posted: {{ notice.createdAtFriendly || (notice.createdAt | date:'medium') }}&lt;/span&gt;&#13;&#10;  &lt;/div&gt;&#13;&#10;  &lt;div class=&quot;notice-content&quot;&gt;&#13;&#10;    &lt;p&gt;{{ notice.content }}&lt;/p&gt;&#13;&#10;  &lt;/div&gt;&#13;&#10;&lt;/div&gt;&#13;&#10;&lt;ng-template #loadingOrError&gt;&#13;&#10;  &lt;div *ngIf=&quot;loading&quot;&gt;Loading notice...&lt;/div&gt;&#13;&#10;  &lt;div *ngIf=&quot;!loading &amp;&amp; error&quot;&gt;{{ error }}&lt;/div&gt;&#13;&#10;&lt;/ng-template&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/notice-article/notice-article.ts">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notice-article/notice-article.ts" />
-              <option name="originalContent" value="import { Component } from '@angular/core';&#10;&#10;@Component({&#10;  selector: 'app-notice-article',&#10;  imports: [],&#10;  templateUrl: './notice-article.html',&#10;  styleUrl: './notice-article.scss'&#10;})&#10;export class NoticeArticle {&#10;&#10;}&#10;" />
-              <option name="updatedContent" value="import { Component } from '@angular/core';&#13;&#10;import { ActivatedRoute } from '@angular/router';&#13;&#10;import { DbHandlerService } from '../services/db-handler-service';&#13;&#10;import { Notice } from '../TypeDefs';&#13;&#10;&#13;&#10;@Component({&#13;&#10;  selector: 'app-notice-article',&#13;&#10;  imports: [],&#13;&#10;  templateUrl: './notice-article.html',&#13;&#10;  styleUrl: './notice-article.scss'&#13;&#10;})&#13;&#10;export class NoticeArticle {&#13;&#10;  notice: Notice | null = null;&#13;&#10;  loading = true;&#13;&#10;  error: string | null = null;&#13;&#10;&#13;&#10;  constructor(private route: ActivatedRoute, private dbService: DbHandlerService) {&#13;&#10;    const id = Number(this.route.snapshot.paramMap.get('id'));&#13;&#10;    if (id) {&#13;&#10;      this.dbService.getNoticeById(id).subscribe({&#13;&#10;        next: (notice: Notice | null) =&gt; {&#13;&#10;          this.notice = notice;&#13;&#10;          this.loading = false;&#13;&#10;          if (!notice) this.error = 'Notice not found.';&#13;&#10;        },&#13;&#10;        error: () =&gt; {&#13;&#10;          this.error = 'Error loading notice.';&#13;&#10;          this.loading = false;&#13;&#10;        }&#13;&#10;      });&#13;&#10;    } else {&#13;&#10;      this.error = 'Invalid notice ID.';&#13;&#10;      this.loading = false;&#13;&#10;    }&#13;&#10;  }&#13;&#10;}" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/notice-blurb/notice-blurb.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notice-blurb/notice-blurb.html" />
-              <option name="originalContent" value="&lt;div class=&quot;notice-blurb notice-{{ class }}&quot;&gt;&#10;  &lt;div class=&quot;notice-blurb-header&quot;&gt;&#10;    &lt;span class=&quot;notice-date-icon&quot;&gt;&#10;      &lt;span class=&quot;date-month&quot;&gt;{{ createdAtMonth }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-day&quot;&gt;{{ createdAtDay }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-month-time&quot;&gt;{{ createdAtRest }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-year&quot;&gt;{{ createdAtYear }}&lt;/span&gt;&#10;    &lt;/span&gt;&#10;&#10;    &lt;h3 class=&quot;notice-title&quot;&gt;{{ title }}&lt;/h3&gt;&#10;  &lt;/div&gt;&#10;  &lt;div class=&quot;notice-blurb-content&quot;&gt;&#10;    &lt;p&gt;{{ content }}&lt;/p&gt;&#10;    &lt;a [routerLink]=&quot;['/notice', id]&quot; class=&quot;read-more-link&quot;&gt;Read more&lt;/a&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;" />
-              <option name="updatedContent" value="&lt;div class=&quot;notice-blurb notice-{{ class }}&quot;&gt;&#10;  &lt;div class=&quot;notice-blurb-header&quot;&gt;&#10;    &lt;span class=&quot;notice-date-icon&quot;&gt;&#10;      &lt;span class=&quot;date-month&quot;&gt;{{ createdAtMonth }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-day&quot;&gt;{{ createdAtDay }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-month-time&quot;&gt;{{ createdAtRest }}&lt;/span&gt;&#10;      &lt;span class=&quot;date-year&quot;&gt;{{ createdAtYear }}&lt;/span&gt;&#10;    &lt;/span&gt;&#10;&#10;    &lt;h3 class=&quot;notice-title&quot;&gt;{{ title }}&lt;/h3&gt;&#10;  &lt;/div&gt;&#10;  &lt;div class=&quot;notice-blurb-content&quot;&gt;&#10;    &lt;p&gt;{{ content }}&lt;/p&gt;&#10;    &lt;a [routerLink]=&quot;['/notice', id]&quot; class=&quot;read-more-link&quot;&gt;Read more&lt;/a&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/notices.html">
           <value>
             <PendingDiffInfo>
@@ -103,15 +58,6 @@
           <value>
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/notices.ts" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/frontend/src/app/services/db-handler-service.ts">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/frontend/src/app/services/db-handler-service.ts" />
-              <option name="originalContent" value="import { Injectable } from '@angular/core';&#10;import { HttpClient } from '@angular/common/http';&#10;import { catchError, map } from 'rxjs';&#10;&#10;@Injectable({&#10;  providedIn: 'root'&#10;})&#10;export class DbHandlerService {&#10;&#10;  private apiEndpoint = '/api/v1/';&#10;  private noticesEndpoint = this.apiEndpoint + 'GetNotices';&#10;  private recordsEndpoint = this.apiEndpoint + 'GetRecords';&#10;&#10;  constructor ( private http: HttpClient ) {  }&#10;&#10;  getNotices( limit?: number ) {&#10;    return this.http.get(&#10;      `${this.noticesEndpoint}?limit=${limit || 5}`,&#10;    ).pipe(&#10;      map( (data: any) =&gt; {&#10;        if ( !data || !Array.isArray(data) ) {&#10;          return [];&#10;        }&#10;&#10;        // Assuming the data is an array of notices&#10;        return data.map((notice: any) =&gt; {&#10;          return {&#10;            id: notice.id,&#10;            title: notice.title,&#10;            content: notice.content,&#10;            date: new Date(notice.date)&#10;          };&#10;        });&#10;      } ),&#10;      catchError( ( e: unknown ) =&gt; {&#10;        console.error('Error fetching notices:', e);&#10;        return [];&#10;      } )&#10;    );&#10;  }&#10;&#10;  getRecords() {&#10;    return this.http.get(this.recordsEndpoint);&#10;  }&#10;}&#10;" />
-              <option name="updatedContent" value="import { Injectable } from '@angular/core';&#10;import { HttpClient } from '@angular/common/http';&#10;import { catchError, map } from 'rxjs';&#10;&#10;@Injectable({&#10;  providedIn: 'root'&#10;})&#10;export class DbHandlerService {&#10;&#10;  private apiEndpoint = '/api/v1/';&#10;  private noticesEndpoint = this.apiEndpoint + 'GetNotices';&#10;  private recordsEndpoint = this.apiEndpoint + 'GetRecords';&#10;&#10;  constructor ( private http: HttpClient ) {  }&#10;&#10;  getNotices( limit?: number ) {&#10;    return this.http.get(&#10;      `${this.noticesEndpoint}?limit=${limit || 5}`,&#10;    ).pipe(&#10;      map( (data: any) =&gt; {&#10;        if ( !data || !Array.isArray(data) ) {&#10;          return [];&#10;        }&#10;&#10;        // Assuming the data is an array of notices&#10;        return data.map((notice: any) =&gt; {&#10;          return {&#10;            id: notice.id,&#10;            title: notice.title,&#10;            content: notice.content,&#10;            date: new Date(notice.date)&#10;          };&#10;        });&#10;      } ),&#10;      catchError( ( e: unknown ) =&gt; {&#10;        console.error('Error fetching notices:', e);&#10;        return [];&#10;      } )&#10;    );&#10;  }&#10;&#10;  getRecords() {&#10;    return this.http.get(this.recordsEndpoint);&#10;  }&#10;&#10;  getNoticeById(id: number) {&#10;    return this.http.get(`${this.noticesEndpoint}?id=${id}`).pipe(&#10;      map((data: any) =&gt; {&#10;        if (!data || (Array.isArray(data) &amp;&amp; data.length === 0)) {&#10;          return null;&#10;        }&#10;        // If API returns an array, take the first item&#10;        const notice = Array.isArray(data) ? data[0] : data;&#10;        return {&#10;          id: notice.id,&#10;          title: notice.title,&#10;          content: notice.content,&#10;          createdAt: new Date(notice.createdAt || notice.date),&#10;          updatedAt: new Date(notice.updatedAt || notice.date),&#10;          createdAtFriendly: notice.createdAtFriendly || '',&#10;          updatedAtFriendly: notice.updatedAtFriendly || '',&#10;          class: notice.class || ''&#10;        };&#10;      }),&#10;      catchError((e: unknown) =&gt; {&#10;        console.error('Error fetching notice by id:', e);&#10;        return [null];&#10;      })&#10;    );&#10;  }&#10;}" />
             </PendingDiffInfo>
           </value>
         </entry>
