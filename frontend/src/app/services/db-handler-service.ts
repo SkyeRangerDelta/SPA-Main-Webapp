@@ -78,7 +78,11 @@ export class DbHandlerService {
   getDepartments() {
     return this.http.get(`${this.apiEndpoint}GetDepartments`).pipe(
       map((data: any) => {
-        return [];
+        return data.departments;
+      }),
+      catchError((e: any) => {
+        console.error('Error fetching departments:', e);
+        return of([] as Department[]); // Return an empty array on error
       }
     ));
   }

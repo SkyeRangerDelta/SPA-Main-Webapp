@@ -19,6 +19,7 @@ export interface NoticeRes {
 export interface Department {
   id: number;
   name: string;
+  shortName: string;
   description: string;
   href: string;
 }

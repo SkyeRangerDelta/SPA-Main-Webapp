@@ -1,7 +1,7 @@
 // Imports
 import { Router, RouterContext } from 'https://deno.land/x/oak/mod.ts';
 import { DBHandler } from "../../Utilities/DBHandler.ts";
-import { Notice } from "../../../frontend/src/app/TypeDefs.ts";
+import { Department, Notice } from "../../../frontend/src/app/TypeDefs.ts";
 
 interface NoticeRes {
   status: number;
@@ -17,13 +17,35 @@ router
   .get('/GetDepartments', async ( ctx: RouterContext<string> ) => {
     const Mongo: DBHandler = ctx.state.Mongo;
 
-    console.log( 'Returning no departments for now.' );
+    const deps = await Mongo.selectMany('SPA_Departments', {}, {} );
+    const depMap = deps.map((dep: any) => {
+      return {
+        id: dep.id,
+        name: dep.name,
+        shortName: dep.shortName,
+        description: dep.description,
+        href: dep.href
+      } as Department;
+    });
+
+    if ( !depMap || depMap.length === 0 ) {
+      console.log('No departments found.');
+
+      ctx.response.status = 404;
+      ctx.response.body = {
+        status: 404,
+        message: 'No departments found',
+        success: false,
+        departments: []
+      };
+      return;
+    }
 
     ctx.response.body = {
       status: 200,
       message: 'Success',
       success: true,
-      departments: []
+      departments: depMap
     };
   });
 
