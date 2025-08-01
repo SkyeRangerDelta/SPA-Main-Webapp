@@ -4,6 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use 'sass:color';
 
 // Color Variables
 // Light Palette
@@ -236,7 +237,7 @@ body.light-mode .nav-sub-menu a {
 }
 body.light-mode .nav-sub-menu a:hover,
 body.light-mode .nav-sub-menu a.active {
-  background: lighten($color-light-link-accent, 50%); // ~#e3f2fd
+  background: color.adjust($color-light-link-accent, $lightness: 50%);
   color: $color-light-link-accent;
   font-weight: 500;
 }
@@ -288,7 +289,7 @@ body.light-mode .nav-sub-menu a.active {
     min-height: 64px;
     padding: 0.25rem;
     border-radius: 6px;
-    background: lighten($color-dark-surface, 6%);
+    background: color.adjust($color-dark-surface, $lightness: 6%);
     color: $color-dark-accent;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     text-align: center;
@@ -325,7 +326,7 @@ body.light-mode .nav-sub-menu a.active {
   }
 
   body.light-mode .notice-date-icon {
-    background: darken($color-light-surface, 4%);
+    background: color.adjust($color-light-surface, $lightness: -4%);
     color: $color-light-accent;
   }
 }
@@ -356,7 +357,7 @@ body.light-mode .notice-blurb {
   }
 
   .notice-date {
-    color: darken($color-light-text, 30%);
+    color: color.adjust($color-light-text, $lightness: -30%);
   }
 }
 
