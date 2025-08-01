@@ -164,6 +164,11 @@ section {
   transition: background 0.2s, color 0.2s;
 }
 
+.nav-menu a:hover {
+  background: color.adjust($color-dark-surface, $lightness: 6%);
+  color: $color-dark-link-accent;
+}
+
 // Dark Mode Nav Links
 body.dark-mode .nav-menu a {
   color: $color-dark-link-accent;
