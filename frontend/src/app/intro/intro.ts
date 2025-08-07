@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { NoticeBoard } from '../notice-board/notice-board';
 
 @Component({
   selector: 'app-intro',
-  imports: [],
+  imports: [
+    NoticeBoard
+  ],
   templateUrl: './intro.html',
   styleUrl: './intro.scss'
 })
