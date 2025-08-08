@@ -46,7 +46,7 @@ router
       const limit = parseInt( ctx.request.url.searchParams.get('limit') || '6' );
       const offset = parseInt( ctx.request.url.searchParams.get('offset') || '0' );
 
-      const noticesRes = await Mongo.selectMany( `SPA_Notices`, {}, { limit: limit, skip: offset } );
+      const noticesRes = await Mongo.selectManyDateSorted( `SPA_Notices`, {}, { limit: limit, skip: offset }, { createdAt: -1 } );
 
       return ctx.response.body = {
         status: 200,

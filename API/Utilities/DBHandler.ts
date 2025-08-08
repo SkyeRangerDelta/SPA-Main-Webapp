@@ -60,6 +60,10 @@ export class DBHandler {
     return this.database.collection( collection ).find( query, filter ).toArray();
   }
 
+  public selectManyDateSorted( collection: string, query: object, filter: FindOptions, sortCriteria: object ) {
+    return this.database.collection( collection ).find( query, filter ).sort( sortCriteria ).toArray();
+  }
+
   public async insertOne( collection: string, doc: object ) {
     return await this.database.collection( collection ).insertOne( doc );
   }
