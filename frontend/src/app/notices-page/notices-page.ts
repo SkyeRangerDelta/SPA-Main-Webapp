@@ -9,6 +9,4 @@ import { NoticeBoard } from '../notice-board/notice-board';
   templateUrl: './notices-page.html',
   styleUrl: './notices-page.scss'
 })
-export class NoticesPage {
-
-}
+export class NoticesPage {}

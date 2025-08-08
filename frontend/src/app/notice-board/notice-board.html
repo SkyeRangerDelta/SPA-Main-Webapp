@@ -11,3 +11,14 @@
 <ng-template #noNotices>
   <p class="no-notices">No notices available at the moment.</p>
 </ng-template>
+@if ( !loading && notices.length > 16 ) {
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+    <span>Page {{page}}</span>
+    <button (click)="nextPage()" [disabled]="!hasMore">Next</button>
+  </div>
+}
+
+@if ( loading ) {
+  <span>Loading...</span>
+}
