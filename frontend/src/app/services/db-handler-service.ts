@@ -14,24 +14,24 @@ export class DbHandlerService {
 
   constructor ( private http: HttpClient ) {  }
 
-  getNotices( limit?: number ) {
+  getNotices( limit?: number, offset?: number ) {
+    const params = [];
+    if ( limit !== undefined ) params.push( `limit=${limit}` );
+    if ( offset !== undefined ) params.push( `offset=${offset}` );
+    const query = params.length ? `?${params.join('&')}` : '';
     return this.http.get(
-      `${this.noticesEndpoint}?limit=${limit || 5}`,
+      `${this.noticesEndpoint}${query}`,
     ).pipe(
       map( (data: any) => {
-        if ( !data || !Array.isArray(data) ) {
-          return [];
+        // If API returns {notices: [...], ...}
+        if ( data && Array.isArray(data.notices) ) {
+          return data.notices;
         }
-
-        // Assuming the data is an array of notices
-        return data.map((notice: any) => {
-          return {
-            id: notice.id,
-            title: notice.title,
-            content: notice.content,
-            date: new Date(notice.date)
-          };
-        });
+        // Fallback for old response
+        if ( Array.isArray(data) ) {
+          return data;
+        }
+        return [];
       } ),
       catchError( ( e: unknown ) => {
         console.error('Error fetching notices:', e);

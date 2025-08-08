@@ -44,8 +44,9 @@ router
     }
     else {
       const limit = parseInt( ctx.request.url.searchParams.get('limit') || '6' );
+      const offset = parseInt( ctx.request.url.searchParams.get('offset') || '0' );
 
-      const noticesRes = await Mongo.selectMany( `SPA_Notices`, {}, { limit: limit } );
+      const noticesRes = await Mongo.selectMany( `SPA_Notices`, {}, { limit: limit, skip: offset } );
 
       return ctx.response.body = {
         status: 200,
