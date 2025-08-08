@@ -43,7 +43,7 @@ router
       return;
     }
     else {
-      const limit = parseInt( ctx.request.url.searchParams.get('limit') || '5' );
+      const limit = parseInt( ctx.request.url.searchParams.get('limit') || '6' );
 
       const noticesRes = await Mongo.selectMany( `SPA_Notices`, {}, { limit: limit } );
 
