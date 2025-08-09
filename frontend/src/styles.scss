@@ -66,10 +66,14 @@ html {
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: $body-text, "Helvetica Neue", sans-serif;
 }
 
@@ -140,7 +144,7 @@ footer {
   bottom: 0;
   width: 100vw;
   z-index: 100;
-  background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.08) 100%), inherit;
+  background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.08) 100%);
   border-top: 1.5px solid rgba(0,0,0,0.08);
   text-align: center;
   padding: 4rem;
