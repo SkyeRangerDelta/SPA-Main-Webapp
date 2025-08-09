@@ -1,22 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
 import { Header } from './header/header';
-import { Intro } from './intro/intro';
-import { NoticeBoard } from './notice-board/notice-board';
 import { Footer } from './footer/footer';
 import { ToggleThemeButton } from './toggle-theme-button/toggle-theme-button';
-import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     Header,
-    Intro,
-    NoticeBoard,
     Footer,
-    ToggleThemeButton,
-    NgTemplateOutlet
+    ToggleThemeButton
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
