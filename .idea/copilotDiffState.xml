@@ -12,6 +12,24 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/frontend/entrypoint.sh">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/entrypoint.sh" />
+              <option name="originalContent" value="#!/bin/sh&#10;: &quot;${API_PORT:=4100}&quot;&#10;: &quot;${API_HOST:=localhost}&quot;&#10;envsubst '$API_HOST $API_PORT' &lt; /etc/nginx/nginx.conf.template &gt; /etc/nginx/nginx.conf&#10;exec nginx -g 'daemon off;'&#10;" />
+              <option name="updatedContent" value="#!/bin/sh&#10;: &quot;${API_PORT:=4100}&quot;&#10;: &quot;${API_HOST:=localhost}&quot;&#10;envsubst '$API_HOST $API_PORT' &lt; /etc/nginx/nginx.conf.template &gt; /etc/nginx/nginx.conf&#10;exec nginx -g 'daemon off;'" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/nginx.conf">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/nginx.conf" />
+              <option name="originalContent" value="events {}&#10;http {&#10;  server {&#10;    listen 80;&#10;    root /usr/share/nginx/html;&#10;    index index.html;&#10;&#10;    location /api/ {&#10;      proxy_pass http://$API_HOST:$API_PORT;&#10;    }&#10;  }&#10;}&#10;" />
+              <option name="updatedContent" value="events {}&#10;http {&#10;  server {&#10;    listen 80;&#10;    root /usr/share/nginx/html;&#10;    index index.html;&#10;&#10;    location /api/ {&#10;      rewrite ^/api/(.*)$ /$1 break;&#10;      proxy_pass http://$API_HOST:$API_PORT;&#10;    }&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/frontend/src/app/footer.ts">
           <value>
             <PendingDiffInfo>
