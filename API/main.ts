@@ -62,9 +62,11 @@ app.use( MainRouter.routes(), MainRouter.allowedMethods() );
 // Error handling
 app.use( ( ctx ) => {
   if (ctx.response.status === 404) {
-    ctx.response.body = "404 Not Found";
+    ctx.response.status = 404;
+    ctx.response.body = { error: "404 Not Found" };
   } else if (ctx.response.status >= 500) {
-    ctx.response.body = "500 Internal Server Error";
+    ctx.response.status = 500;
+    ctx.response.body = { error: "500 Internal Server Error" };
   }
 } );
 
