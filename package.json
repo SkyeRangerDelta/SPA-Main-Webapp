@@ -4,6 +4,6 @@
     "semantic-release": "^24.2.7"
   },
   "scripts": {
-    "docker:build": "docker build -t spa-backend ./API && docker build -t spa-frontend ./frontend"
+    "docker:build": "docker build -t spa-main-backend ./API && docker build -t spa-main-frontend ./frontend"
   }
 }
