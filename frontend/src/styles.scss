@@ -102,6 +102,54 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
+// Attention style for content headers
+.content-header.att {
+  color: #ffe082; // Soft yellow (Material Amber 200)
+}
+
+body.light-mode .content-header.att {
+  color: #7c5b2f; // Use the defined $color-light-accent for better contrast in light mode
+}
+
+/* spa-records-app/src/app/intro/intro.component.scss */
+p.att {
+  outline: 2px solid #ffe082; /* Soft yellow outline */
+  outline-offset: 2px;
+  padding: 2rem;
+}
+
+body.light-mode p.att {
+  outline: 2px solid #7c5b2f; // Use $color-light-accent for better visibility in light mode
+  background: #fffbe6; // Subtle yellow background for emphasis
+  color: #212529; // $color-light-text for readability
+}
+
+// Critical style for content headers
+.content-header.crit {
+  color: #ff8a80; // Soft red (Material Red A100)
+}
+
+.content-subheader.crit {
+  color: #ff8a80; // Soft red (Material Red A100)
+}
+
+body.light-mode .content-header.crit {
+  color: #b71c1c; // Deep red for better contrast in light mode
+}
+
+/* spa-records-app/src/app/intro/intro.component.scss */
+p.crit {
+  outline: 2px solid #ff8a80; /* Soft red outline */
+  outline-offset: 2px;
+  padding: 2rem;
+}
+
+body.light-mode p.crit {
+  outline: 2px solid #b71c1c; // Deep red for visibility in light mode
+  background: #ffebee; // Subtle red background for emphasis
+  color: #212529; // $color-light-text for readability
+}
+
 // Handwritten text with IM FELL DW Pica
 .handwritten-text {
   font-family: $handwriting, serif;

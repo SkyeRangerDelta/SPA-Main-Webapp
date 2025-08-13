@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { NoticeBoard } from '../notice-board/notice-board';
 
 @Component({
   selector: 'app-eprocs',
-  imports: [],
+  imports: [
+    NoticeBoard
+  ],
   templateUrl: './eprocs.html',
   styleUrl: './eprocs.scss'
 })
