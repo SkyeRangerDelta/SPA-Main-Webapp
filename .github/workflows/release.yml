@@ -59,10 +59,17 @@ jobs:
           else
             echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
           fi
-      - name: Build frontend Docker image
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
+            --label "org.opencontainers.image.authors=${{ github.actor }}" \
+            --label "org.opencontainers.image.title=${{ env.REPO }}" \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./API
+      - name: Push backend Docker image ( sha )
         run: |
-          docker build -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./frontend
-      - name: Push frontend Docker image
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} 
+
+      - name: Push backend Docker image ( tag )
         run: |
           docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }}
 
@@ -100,8 +107,17 @@ jobs:
           fi
       - name: Build backend Docker image
         run: |
-          docker build -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
-      - name: Push backend Docker image
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
+            --label "org.opencontainers.image.authors=${{ github.actor }}" \
+            --label "org.opencontainers.image.title=${{ env.REPO }}" \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
+      - name: Push backend Docker image ( sha )
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} 
+
+      - name: Push backend Docker image ( tag )
         run: |
           docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }}
 
