@@ -150,6 +150,25 @@ body.light-mode p.crit {
   color: #212529; // $color-light-text for readability
 }
 
+.disclaimer {
+  color: color.adjust($color-light-text, $lightness: 40%, $alpha: -0.3);
+  font-size: 0.92rem;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.68;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  display: inline-block;
+}
+
+body.dark-mode .disclaimer {
+  color: color.adjust($color-dark-text, $lightness: 30%, $alpha: -0.4);
+  opacity: 0.6;
+}
+
 // Handwritten text with IM FELL DW Pica
 .handwritten-text {
   font-family: $handwriting, serif;
