@@ -20,7 +20,7 @@ import { MainRouter } from "./Routes/MainRouter.ts";
 // Server
 const app = new Application();
 
-const port = parseInt( Deno.env.get('APP_PORT') ) || 3000;
+const port = parseInt( Deno.env.get('APP_PORT') || '3000' ) || 3000;
 const hostname = Deno.env.get('APP_HOST') || "localhost";
 
 const Mongo = new DBHandler();
