@@ -244,6 +244,11 @@ section {
   transition: background 0.2s, color 0.2s;
 }
 
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
 .nav-menu a:hover {
   background: color.adjust($color-dark-surface, $lightness: 6%);
   color: $color-dark-link-accent;
