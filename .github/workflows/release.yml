@@ -27,28 +27,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
-  build-and-push:
+  build-and-push-frontend:
+    name: Build & Push Frontend Docker Image
     runs-on: ubuntu-latest
     needs: release
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Extract repository name
         id: repo
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
-
       - name: Set image tag
         id: tag
         run: |
@@ -57,21 +54,47 @@ jobs:
           elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
             echo "TAG=experimental" >> $GITHUB_ENV
           else
-            echo "TAG=latest" >> $GITHUB_ENV
+            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
           fi
-
-      - name: Build Docker image
+      - name: Build frontend Docker image
         run: |
-          docker build \
-            --label "org.opencontainers.image.authors=${{ github.actor }}" \
-            --label "org.opencontainers.image.title=${{ env.REPO }}" \
-            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
-            -t ghcr.io/${{ env.REPO }}:${{ env.TAG }} \
-            -t ghcr.io/${{ env.REPO }}:${{ github.sha }} \
-            .
+          docker build -t ghcr.io/${{ github.repository_owner }}/spa-main-frontend:${{ env.TAG }} ./frontend
+      - name: Push frontend Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/spa-main-frontend:${{ env.TAG }}
 
-      - name: Push Docker image (branch tag)
-        run: docker push ghcr.io/${{ env.REPO }}:${{ env.TAG }}
-
-      - name: Push Docker image (commit SHA)
-        run: docker push ghcr.io/${{ env.REPO }}:${{ github.sha }}
+  build-and-push-backend:
+    name: Build & Push Backend Docker Image
+    runs-on: ubuntu-latest
+    needs: release
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract repository name
+        id: repo
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Set image tag
+        id: tag
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "master" ]]; then
+            echo "TAG=latest" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
+            echo "TAG=experimental" >> $GITHUB_ENV
+          else
+            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          fi
+      - name: Build backend Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/spa-main-backend:${{ env.TAG }} ./API
+      - name: Push backend Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/spa-main-backend:${{ env.TAG }}
