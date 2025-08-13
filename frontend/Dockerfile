@@ -3,7 +3,6 @@ FROM node:24-alpine as BUILD
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
-COPY ../API .
 RUN npm run build
 
 # Host frontend
