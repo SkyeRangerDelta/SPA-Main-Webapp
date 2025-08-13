@@ -10,7 +10,7 @@
   </div>
   <a routerLink="/notices" routerLinkActive="active">Notices</a>
   <div class="nav-menu-dropdown">
-    <a routerLink="#" >Departments</a>
+    <a routerLink="/departments" >Departments</a>
     <div class="nav-sub-menu">
       @for ( department of departmentsList; track department.id ) {
         <a href="{{ department.href }}">{{ department.shortName }}</a>

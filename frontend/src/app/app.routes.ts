@@ -7,6 +7,7 @@ import { Contact } from './contact/contact';
 import { Eprocs } from './eprocs/eprocs';
 import { Services } from './services/services';
 import { Regulations } from './regulations/regulations';
+import { Departments } from './departments/departments';
 
 export const routes: Routes = [
   { path: '', component: Intro },
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'contact', component: Contact },
   { path: 'eprocs', component: Eprocs },
   { path: 'services', component: Services },
-  { path: 'regulations', component: Regulations }
+  { path: 'regulations', component: Regulations },
+  { path: 'departments', component: Departments }
 ];
