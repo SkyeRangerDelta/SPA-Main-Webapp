@@ -1,6 +1,13 @@
 <nav class="nav-menu">
   <a routerLink="/" routerLinkActive="active">Home</a>
-  <a routerLink="/about" routerLinkActive="active">About</a>
+  <div class="nav-menu-dropdown">
+    <a routerLink="/about" >About</a>
+    <div class="nav-sub-menu">
+      <a routerLink="/regulations">Regulations</a>
+      <a routerLink="/eprocs">Emergency Procedures</a>
+      <a routerLink="/services">Harbour Services</a>
+    </div>
+  </div>
   <a routerLink="/notices" routerLinkActive="active">Notices</a>
   <div class="nav-menu-dropdown">
     <a routerLink="#" >Departments</a>
