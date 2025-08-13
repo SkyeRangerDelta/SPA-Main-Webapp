@@ -8,7 +8,7 @@
     <p class="footer-title">Port Authority</p>
     <ul class="footer-links">
       @for ( link of footerALinks; track link.url ) {
-        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        <li><a routerLink="{{ link.url }}" routerLinkActive="active">{{ link.label }}</a></li>
       }
     </ul>
   </div>
@@ -16,7 +16,7 @@
     <p class="footer-title">Contact & Info</p>
     <ul class="footer-links">
       @for ( link of footerBLinks; track link.url ) {
-        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        <li><a routerLink="{{ link.url }}" routerLinkActive="active">{{ link.label }}</a></li>
       }
     </ul>
   </div>
