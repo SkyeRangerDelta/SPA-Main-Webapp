@@ -28,6 +28,11 @@ export class DBHandler {
   }
 
   private async initialize() {
+    if ( !this.mongoUri ) {
+      console.error('MONGO_URI not found in environment variables.');
+      return false;
+    }
+
     try {
       await this.client.connect( this.mongoUri );
     }
