@@ -5,7 +5,7 @@ import { Router } from 'https://deno.land/x/oak/mod.ts';
 async function loadRoutes( router: Router ) {
   console.log('Loading routes...');
 
-  const routesDir = './API/Routes/v1';
+  const routesDir = './Routes/v1';
 
   for await ( const dirEntry of Deno.readDirSync( routesDir ) ) {
     if ( dirEntry.isFile && dirEntry.name.endsWith('.ts') ) {
