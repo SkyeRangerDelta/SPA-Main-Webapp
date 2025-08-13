@@ -1,7 +1,7 @@
 // Imports
 import { Router, RouterContext } from 'https://deno.land/x/oak/mod.ts';
 import { DBHandler } from "../../Utilities/DBHandler.ts";
-import { Department, Notice } from "../../../frontend/src/app/TypeDefs.ts";
+import { Department, Notice } from "../../Interfaces.ts";
 
 interface NoticeRes {
   status: number;
