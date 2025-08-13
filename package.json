@@ -1,9 +1,23 @@
 {
+  "name": "spa-main-webapp",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Primary for the Sarim Port Authority.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkyeRangerDelta/SPA-Main-Webapp.git"
+  },
+  "author": "SkyeRangerDelta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SkyeRangerDelta/SPA-Main-Webapp/issues"
+  },
+  "homepage": "https://github.com/SkyeRangerDelta/SPA-Main-Webapp",
+  "scripts": {
+    "docker:build": "docker build -t spa-main-backend ./API && docker build -t spa-main-frontend ./frontend"
+  },
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
     "semantic-release": "^24.2.7"
-  },
-  "scripts": {
-    "docker:build": "docker build -t spa-main-backend ./API && docker build -t spa-main-frontend ./frontend"
   }
 }
