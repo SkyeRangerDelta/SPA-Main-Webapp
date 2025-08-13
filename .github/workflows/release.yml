@@ -46,6 +46,9 @@ jobs:
       - name: Extract repository name
         id: repo
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Extract repository owner
+        id: owner
+        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
       - name: Set image tag
         id: tag
         run: |
@@ -58,10 +61,10 @@ jobs:
           fi
       - name: Build frontend Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/spa-main-frontend:${{ env.TAG }} ./frontend
+          docker build -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./frontend
       - name: Push frontend Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/spa-main-frontend:${{ env.TAG }}
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }}
 
   build-and-push-backend:
     name: Build & Push Backend Docker Image
@@ -82,6 +85,9 @@ jobs:
       - name: Extract repository name
         id: repo
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Extract repository owner
+        id: owner
+        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
       - name: Set image tag
         id: tag
         run: |
@@ -94,7 +100,8 @@ jobs:
           fi
       - name: Build backend Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/spa-main-backend:${{ env.TAG }} ./API
+          docker build -t ghcr.io/${{ end.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
       - name: Push backend Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/spa-main-backend:${{ env.TAG }}
+          docker push ghcr.io/${{ end.OWNER }}/spa-main-backend:${{ env.TAG }}
+
