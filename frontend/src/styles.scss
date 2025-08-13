@@ -111,6 +111,14 @@ body.light-mode .content-header.att {
   color: #7c5b2f; // Use the defined $color-light-accent for better contrast in light mode
 }
 
+.content-subheader.att {
+  color: #ffe082; // Soft yellow (Material Amber 200)
+}
+
+body.light-mode .content-subheader.att {
+  color: #7c5b2f; // Use the defined $color-light-accent for better contrast in light mode
+}
+
 /* spa-records-app/src/app/intro/intro.component.scss */
 p.att {
   outline: 2px solid #ffe082; /* Soft yellow outline */
@@ -134,6 +142,10 @@ body.light-mode p.att {
 }
 
 body.light-mode .content-header.crit {
+  color: #b71c1c; // Deep red for better contrast in light mode
+}
+
+body.light-mode .content-subheader.crit {
   color: #b71c1c; // Deep red for better contrast in light mode
 }
 
