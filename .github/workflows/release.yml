@@ -64,7 +64,7 @@ jobs:
             --label "org.opencontainers.image.authors=${{ github.actor }}" \
             --label "org.opencontainers.image.title=${{ env.REPO }}" \
             -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} \
-            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./API
+            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./frontend
       - name: Push backend Docker image ( sha )
         run: |
           docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} 
