@@ -59,6 +59,8 @@ jobs:
           else
             echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
           fi
+      - name: Build backend Docker image
+        run: |
           docker build \
             --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
             --label "org.opencontainers.image.authors=${{ github.actor }}" \
