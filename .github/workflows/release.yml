@@ -100,8 +100,8 @@ jobs:
           fi
       - name: Build backend Docker image
         run: |
-          docker build -t ghcr.io/${{ end.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
+          docker build -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
       - name: Push backend Docker image
         run: |
-          docker push ghcr.io/${{ end.OWNER }}/spa-main-backend:${{ env.TAG }}
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }}
 
