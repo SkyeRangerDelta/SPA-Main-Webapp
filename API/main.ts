@@ -42,22 +42,22 @@ app.use( async ( ctx, next ) => {
 // Pages/Routes
 app.use( MainRouter.routes(), MainRouter.allowedMethods() );
 
-app.use( async ( ctx, next ) => {
-  const indexPath = Deno.cwd() + "/frontend/dist/spa-main-webapp/browser";
-
-  try {
-    await ctx.send({
-      root: indexPath,
-      index: "index.html",
-    });
-  }
-  catch (error) {
-    console.error("Error serving index.html:", error);
-    ctx.response.status = 500;
-    ctx.response.body = "Internal Server Error";
-    await next();
-  }
-});
+// app.use( async ( ctx, next ) => {
+//   const indexPath = Deno.cwd() + "/frontend/dist/spa-main-webapp/browser";
+//
+//   try {
+//     await ctx.send({
+//       root: indexPath,
+//       index: "index.html",
+//     });
+//   }
+//   catch (error) {
+//     console.error("Error serving index.html:", error);
+//     ctx.response.status = 500;
+//     ctx.response.body = "Internal Server Error";
+//     await next();
+//   }
+// });
 
 // Error handling
 app.use( ( ctx ) => {
