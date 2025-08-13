@@ -1,14 +1,7 @@
 // Imports
 import { Router, RouterContext } from 'https://deno.land/x/oak/mod.ts';
 import { DBHandler } from "../../Utilities/DBHandler.ts";
-import { Department, Notice } from "../../Interfaces.ts";
-
-interface NoticeRes {
-  status: number;
-  message: string;
-  success: boolean;
-  notice?: Notice | null;
-}
+import { Department } from "../../Interfaces.ts";
 
 // Logic
 const router = new Router();
