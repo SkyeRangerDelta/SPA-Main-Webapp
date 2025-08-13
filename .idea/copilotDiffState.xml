@@ -35,7 +35,7 @@
             <PendingDiffInfo>
               <option name="filePath" value="$PROJECT_DIR$/frontend/nginx.conf" />
               <option name="originalContent" value="events {}&#10;http {&#10;  server {&#10;    listen 80;&#10;    root /usr/share/nginx/html;&#10;    index index.html;&#10;&#10;    location /api/ {&#10;      proxy_pass http://$API_HOST:$API_PORT;&#10;    }&#10;  }&#10;}&#10;" />
-              <option name="updatedContent" value="events {}&#10;http {&#10;  server {&#10;    listen 80;&#10;    root /usr/share/nginx/html;&#10;    index index.html;&#10;&#10;    location /api/ {&#10;      rewrite ^/api/(.*)$ /$1 break;&#10;      proxy_pass http://$API_HOST:$API_PORT;&#10;    }&#10;  }&#10;}" />
+              <option name="updatedContent" value="events {}&#10;http {&#10;  include /etc/nginx/mime.types;&#10;  server {&#10;    listen 80;&#10;    root /usr/share/nginx/html;&#10;    index index.html;&#10;&#10;    location /api/ {&#10;      proxy_pass http://$API_HOST:$API_PORT;&#10;    }&#10;  }&#10;}" />
             </PendingDiffInfo>
           </value>
         </entry>
