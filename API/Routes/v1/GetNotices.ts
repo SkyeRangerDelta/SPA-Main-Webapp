@@ -1,7 +1,7 @@
 // Imports
 import { Router, RouterContext } from 'https://deno.land/x/oak/mod.ts';
 import { DBHandler } from "../../Utilities/DBHandler.ts";
-import { Notice } from "../../../frontend/src/app/TypeDefs.ts";
+import { Notice } from "../../Interfaces.ts";
 
 interface NoticeRes {
   status: number;
@@ -17,8 +17,10 @@ router
   .get('/GetNotices', async ( ctx: RouterContext<string> ) => {
     const Mongo: DBHandler = ctx.state.Mongo;
 
-    if ( parseInt( ctx.request.url.searchParams.get('noticeId') ) ) {
-      const noticeId = parseInt( ctx.request.url.searchParams.get('noticeId') );
+   const noticeIdParam = ctx.request.url.searchParams.get('noticeId');
+   const noticeId = noticeIdParam !== null ? parseInt(noticeIdParam) : null;
+
+    if ( noticeId ) {
       const noticeRes = await Mongo.selectOneById( `SPA_Notices`, noticeId );
 
       if ( !noticeRes ) {
