@@ -20,6 +20,7 @@ export class DBHandler {
     this.initialize().then(( result ) => {
       if ( !result ) {
         console.error( "MongoDB connection error. Please check your environment variables." );
+        Deno.exit(1);
       }
       else {
         console.log('MongoDB connected.');
