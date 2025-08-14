@@ -328,6 +328,15 @@ a:visited {
   text-decoration: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: $color-dark-link-accent;
+}
+
 .nav-menu a:hover {
   background: color.adjust($color-dark-surface, $lightness: 6%);
   color: $color-dark-link-accent;
