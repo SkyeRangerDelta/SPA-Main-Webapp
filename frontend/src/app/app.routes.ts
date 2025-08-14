@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'notices', component: NoticesPage },
   { path: 'contact', component: Contact },
   { path: 'eprocs', component: Eprocs },
-  { path: 'services', component: Services },
+  { path: 'harbourservices', component: Services },
   { path: 'regulations', component: Regulations },
   { path: 'departments', component: Departments }
 ];
