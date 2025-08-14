@@ -14,6 +14,8 @@ $color-light-surface: #dee2e6;
 $color-light-link-accent: #0d47a1;
 $color-light-text: #212529;
 $color-light-accent: #7c5b2f;
+$color-light-accent-subaccent: color.adjust($color-light-accent, $lightness: -12%);
+$color-light-subtitle: #9C3848;
 
 // Dark Palette
 // Coolors: https://coolors.co/121316-6c7a89-90caf9-e3e2e6-d7b377
@@ -22,6 +24,8 @@ $color-dark-surface: #6c7a89;
 $color-dark-link-accent: #90caf9;
 $color-dark-text: #e3e2e6;
 $color-dark-accent: #d7b377;
+$color-dark-accent-subaccent: color.adjust($color-dark-accent, $lightness: 14%);
+$color-dark-subtitle: #c1475a;
 
 // Specific-purpose colors
 $color-blurb-border-warning: #ff9800; // Orange for warnings
@@ -107,16 +111,40 @@ h1.content-header {
   margin-bottom: 1rem;
 }
 
+h3.page-subtitle {
+  font-family: $header-text, serif;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba($color-dark-text, 0.2);
+  color: $color-dark-subtitle;
+}
+
+body.light-mode h3.page-subtitle {
+  color: $color-light-subtitle;
+}
+
 h3.content-header {
   font-size: 1.4rem;
   margin-top: 2rem;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid rgba($color-dark-text, 0.2);
+  color: $color-dark-accent;
+}
+
+body.light-mode h3.content-header {
+  border-bottom: 1px solid rgba($color-light-text, 0.2);
+  color: $color-light-accent;
 }
 
 h4.content-header {
   font-size: 1.1rem;
   margin-top: 1.25rem;
+  color: $color-dark-accent-subaccent;
+}
+
+body.light-mode h4.content-header {
+  color: $color-light-accent-subaccent;
 }
 
 p {
