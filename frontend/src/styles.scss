@@ -102,6 +102,44 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
+h1.content-header {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3.content-header {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba($color-dark-text, 0.2);
+}
+
+h4.content-header {
+  font-size: 1.1rem;
+  margin-top: 1.25rem;
+}
+
+p {
+  margin: 0.5rem 0 1.25rem;
+  line-height: 1.5;
+}
+
+.service-block {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .service-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0.75rem 1rem;
+    align-items: start;
+  }
+  .service-block > h4.content-header { margin-top: 0; }
+}
+
 // Attention style for content headers
 .content-header.att {
   color: #ffe082; // Soft yellow (Material Amber 200)
