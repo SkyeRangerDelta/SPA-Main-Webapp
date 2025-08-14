@@ -425,6 +425,56 @@ section {
   transition: background 0.2s, color 0.2s;
 }
 
+@media (max-width: 700px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+  }
+  .nav-menu .nav-menu-dropdown,
+  .nav-menu > a {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-menu .nav-sub-menu {
+    position: static;
+    min-width: unset;
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+    padding: 0 0 0 1.5rem;
+  }
+  .nav-menu .nav-menu-dropdown:hover .nav-sub-menu,
+  .nav-menu .nav-menu-dropdown:focus-within .nav-sub-menu {
+    display: block;
+  }
+  .nav-menu .nav-sub-menu a {
+    padding: 8px 0;
+  }
+  .nav-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    z-index: 20;
+    cursor: pointer;
+  }
+  .nav-menu.collapsed {
+    display: none;
+  }
+}
+@media (min-width: 701px) {
+  .nav-menu-toggle {
+    display: none;
+  }
+}
+
 a:visited {
   color: inherit;
   text-decoration: none;

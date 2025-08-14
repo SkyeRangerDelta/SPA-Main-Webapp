@@ -14,6 +14,7 @@ import { DbHandlerService } from '../services/db-handler-service';
 })
 export class NavMenu {
   departmentsList: Department[] = []
+  navCollapsed = true;
 
   constructor( private dbService: DbHandlerService ) {
     this.dbService.getDepartments().subscribe( ( departments: Department[] ) => {
