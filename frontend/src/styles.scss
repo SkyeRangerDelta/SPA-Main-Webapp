@@ -124,6 +124,19 @@ body.light-mode h3.page-subtitle {
   color: $color-light-subtitle;
 }
 
+h4.page-subtitle {
+  font-family: $header-text, serif;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba($color-dark-text, 0.2);
+  color: $color-dark-subtitle;
+}
+
+body.light-mode h4.page-subtitle {
+  color: $color-light-subtitle;
+}
+
 h3.content-header {
   font-size: 1.4rem;
   margin-top: 2rem;
@@ -175,6 +188,10 @@ p {
 
 body.light-mode .service-block {
   border-left: 2px solid $color-light-surface;
+}
+
+.clause {
+  padding-left: 1rem;
 }
 
 @media (min-width: 900px) {
