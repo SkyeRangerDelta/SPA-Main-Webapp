@@ -9,9 +9,9 @@
   ],
   "tagFormat": "v${version}",
   "plugins": [
+    "@semantic-release/changelog",
     [
       "@semantic-release/commit-analyzer",
-      "@semantic-release/changelog",
       {
         "preset": "angular",
         "releaseRules": [
