@@ -17,6 +17,7 @@
     "docker:build": "docker build -t spa-main-backend ./API && docker build -t spa-main-frontend ./frontend"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "semantic-release": "^24.2.7"
   }
