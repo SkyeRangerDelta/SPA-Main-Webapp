@@ -38,6 +38,18 @@
             "BREAKING CHANGES",
             "BREAKING"
           ]
+        },
+        "presetConfig": {
+          "types": [
+            {
+              "type": "ci",
+              "section": "Continuous Integration"
+            },
+            {
+              "type": "refactor",
+              "section": "Refactoring"
+            }
+          ]
         }
       }
     ],
