@@ -1,0 +1,23 @@
+<div class="notice-article">
+  @if ( !loading && notice ) {
+    <h2 class="notice-title">{{ notice.title }}</h2>
+    <div class="notice-meta">
+      <span class="notice-date">Posted: {{ notice.createdAtFriendly }}</span>
+    </div>
+    <div class="notice-content">
+      <p>{{ notice.content }}</p>
+    </div>
+  }
+  @else {
+    <ng-template [ngTemplateOutlet]="loadingOrError"></ng-template>
+  }
+</div>
+
+<ng-template #loadingOrError>
+  @if ( loading ) {
+    Loading article...
+  } @else if ( !loading && error ) {
+    {{ error }}
+  }
+</ng-template>
+

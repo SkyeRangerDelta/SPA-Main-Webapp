@@ -1,0 +1,141 @@
+name: Release & Publish
+
+on:
+  push:
+    branches: [master, Experimental]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install release deps
+        run: npm i -D semantic-release @semantic-release/git
+      - name: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend_changed: ${{ steps.changes.outputs.frontend }}
+      backend_changed: ${{ steps.changes.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: changes
+        run: |
+          git fetch origin ${{ github.event.repository.default_branch }} --depth=1
+          FRONTEND=$(git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD -- frontend/ | wc -l)
+          BACKEND=$(git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD -- API/ | wc -l)
+          echo "frontend=$([ $FRONTEND -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
+          echo "backend=$([ $BACKEND -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
+
+  build-and-push-frontend:
+    name: Build & Push Frontend Docker Image
+    runs-on: ubuntu-latest
+    needs: [release, detect-changes]
+    if: needs.detect-changes.outputs.frontend_changed == 'true'
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract repository name
+        id: repo
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Extract repository owner
+        id: owner
+        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      - name: Set image tag
+        id: tag
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "master" ]]; then
+            echo "TAG=latest" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
+            echo "TAG=experimental" >> $GITHUB_ENV
+          else
+            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          fi
+      - name: Build backend Docker image
+        run: |
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
+            --label "org.opencontainers.image.authors=${{ github.actor }}" \
+            --label "org.opencontainers.image.title=${{ env.REPO }}" \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./frontend
+      - name: Push backend Docker image ( sha )
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} 
+
+      - name: Push backend Docker image ( tag )
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }}
+
+  build-and-push-backend:
+    name: Build & Push Backend Docker Image
+    runs-on: ubuntu-latest
+    needs: [release, detect-changes]
+    if: needs.detect-changes.outputs.backend_changed == 'true'
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract repository name
+        id: repo
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Extract repository owner
+        id: owner
+        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      - name: Set image tag
+        id: tag
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "master" ]]; then
+            echo "TAG=latest" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
+            echo "TAG=experimental" >> $GITHUB_ENV
+          else
+            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          fi
+      - name: Build backend Docker image
+        run: |
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
+            --label "org.opencontainers.image.authors=${{ github.actor }}" \
+            --label "org.opencontainers.image.title=${{ env.REPO }}" \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} \
+            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
+      - name: Push backend Docker image ( sha )
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} 
+
+      - name: Push backend Docker image ( tag )
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }}
