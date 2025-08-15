@@ -35,18 +35,35 @@
         "parserOpts": {
           "noteKeywords": [
             "BREAKING CHANGE",
-            "BREAKING CHANGES"
+            "BREAKING CHANGES",
+            "BREAKING"
           ]
         }
       }
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "presetConfig": {
+          "types": [
+            {
+              "type": "ci",
+              "section": "Continuous Integration"
+            },
+            {
+              "type": "refactor",
+              "section": "Refactoring"
+            }
+          ]
+        }
+      }
+    ],
     [
       "@semantic-release/git",
       {
         "assets": [
           "README.md",
-          "CHANGELOG.md"
+          "package.json"
         ],
         "message": "Chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
