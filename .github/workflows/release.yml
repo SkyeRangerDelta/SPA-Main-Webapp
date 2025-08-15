@@ -27,25 +27,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
-  detect-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      frontend_changed: ${{ steps.changes.outputs.frontend }}
-      backend_changed: ${{ steps.changes.outputs.backend }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: changes
-        run: |
-          git fetch origin ${{ github.event.repository.default_branch }}
-          FRONTEND=$(git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD -- frontend/ | wc -l)
-          BACKEND=$(git diff --name-only origin/${{ github.event.repository.default_branch }} HEAD -- API/ | wc -l)
-          echo "frontend=$([ $FRONTEND -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
-          echo "backend=$([ $BACKEND -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
-
   build-and-push-frontend:
     name: Build & Push Frontend Docker Image
     runs-on: ubuntu-latest
-    needs: [release, detect-changes]
+    needs: [release]
     if: needs.detect-changes.outputs.frontend_changed == 'true'
     permissions:
       contents: read
@@ -94,7 +79,7 @@ jobs:
   build-and-push-backend:
     name: Build & Push Backend Docker Image
     runs-on: ubuntu-latest
-    needs: [release, detect-changes]
+    needs: [release]
     if: needs.detect-changes.outputs.backend_changed == 'true'
     permissions:
       contents: read
