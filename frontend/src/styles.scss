@@ -264,6 +264,24 @@ body.light-mode p.crit {
   color: #212529; // $color-light-text for readability
 }
 
+.title-underline {
+  border-bottom: 2px solid $color-dark-accent;
+  padding-bottom: 0.5rem;
+}
+
+body.light-mode .title-underline {
+  border-bottom: 2px solid $color-light-accent;
+  padding-bottom: 0.5rem;
+}
+
+.muted {
+  border-color: $color-dark-surface;
+}
+
+body.light-mode .muted {
+  border-color: $color-dark-surface;
+}
+
 .disclaimer {
   color: color.adjust($color-light-text, $lightness: 40%, $alpha: -0.3);
   font-size: 0.92rem;
