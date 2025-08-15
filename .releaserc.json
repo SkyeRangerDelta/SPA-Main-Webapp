@@ -9,7 +9,6 @@
   ],
   "tagFormat": "v${version}",
   "plugins": [
-    "@semantic-release/changelog",
     [
       "@semantic-release/commit-analyzer",
       {
@@ -39,7 +38,12 @@
             "BREAKING CHANGES",
             "BREAKING"
           ]
-        },
+        }
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
         "presetConfig": {
           "types": [
             {
@@ -54,7 +58,6 @@
         }
       }
     ],
-    "@semantic-release/release-notes-generator",
     [
       "@semantic-release/git",
       {
