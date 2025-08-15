@@ -123,26 +123,29 @@ jobs:
         run: |
           docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }}
 
-  sync-master-to-development:
-      name: Update development from master
-      runs-on: ubuntu-latest
-      needs: [build-and-push-frontend, build-and-push-backend]
-      if: github.ref == 'refs/heads/master'
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v4
-          with:
-            ref: master
-            token: ${{ secrets.GITHUB_TOKEN }}
-        - name: Set up Git user
-          run: |
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-        - name: Fetch all branches
-          run: git fetch origin development
-        - name: Merge master into development
-          run: |
-            git checkout development
-            git merge master --no-ff --no-edit
-        - name: Push changes
-          run: git push origin development
+  sync-master-to-experimental:
+    name: Sync Experimental
+    runs-on: ubuntu-latest
+    needs: [build-and-push-frontend, build-and-push-backend]
+    if: github.event_name == 'push' && github.ref_name == 'master'
+    steps:
+      - name: Checkout Experimental
+        uses: actions/checkout@v4
+        with:
+          ref: Experimental
+          fetch-depth: 0
+
+      - name: Set up Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch latest master
+        run: git fetch origin master --depth=0
+
+      - name: Merge master into Experimental
+        run: |
+          git merge --no-ff --no-edit origin/master
+
+      - name: Push changes
+        run: git push origin HEAD:Experimental
