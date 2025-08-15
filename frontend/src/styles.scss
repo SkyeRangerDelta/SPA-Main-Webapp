@@ -278,8 +278,8 @@ body.light-mode p.crit {
   display: inline-block;
 }
 
-body.dark-mode .disclaimer {
-  color: color.adjust($color-dark-text, $lightness: 30%, $alpha: -0.4);
+body.light-mode .disclaimer {
+  color: color.adjust($color-light-text, $lightness: -8%, $alpha: -0.7);
   opacity: 0.6;
 }
 
