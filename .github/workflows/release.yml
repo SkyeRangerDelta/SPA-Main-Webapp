@@ -140,7 +140,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch latest master
-        run: git fetch origin master --depth=0
+        run: git fetch origin master
 
       - name: Merge master into Experimental
         run: |
