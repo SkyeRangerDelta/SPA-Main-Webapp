@@ -1,11 +1,13 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Notice } from '../TypeDefs';
 import { RouterLink } from '@angular/router';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-notice-blurb',
   imports: [
-    RouterLink
+    RouterLink,
+    SlicePipe
   ],
   templateUrl: './notice-blurb.html',
   styleUrl: './notice-blurb.scss'
