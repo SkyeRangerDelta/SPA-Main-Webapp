@@ -17,8 +17,9 @@ router
   .get('/GetNotices', async ( ctx: RouterContext<string> ) => {
     const Mongo: DBHandler = ctx.state.Mongo;
 
-   const noticeIdParam = ctx.request.url.searchParams.get('noticeId');
-   const noticeId = noticeIdParam !== null ? parseInt(noticeIdParam) : null;
+    const noticeIdParam = ctx.request.url.searchParams.get('id');
+    const noticeId = noticeIdParam !== null ? parseInt(noticeIdParam) : null;
+
 
     if ( noticeId ) {
       const noticeRes = await Mongo.selectOneById( `SPA_Notices`, noticeId );

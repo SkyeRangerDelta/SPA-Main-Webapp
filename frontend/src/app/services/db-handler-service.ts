@@ -10,8 +10,6 @@ export class DbHandlerService {
 
   private apiEndpoint = '/api/v1/';
   private noticesEndpoint = this.apiEndpoint + 'GetNotices';
-  private recordsEndpoint = this.apiEndpoint + 'GetRecords';
-
   constructor ( private http: HttpClient ) {  }
 
   getNotices( limit?: number, offset?: number ) {
@@ -23,11 +21,10 @@ export class DbHandlerService {
       `${this.noticesEndpoint}${query}`,
     ).pipe(
       map( (data: any) => {
-        // If API returns {notices: [...], ...}
         if ( data && Array.isArray(data.notices) ) {
           return data.notices;
         }
-        // Fallback for old response
+
         if ( Array.isArray(data) ) {
           return data;
         }
@@ -85,9 +82,5 @@ export class DbHandlerService {
         return of([] as Department[]); // Return an empty array on error
       }
     ));
-  }
-
-  getRecords() {
-    return this.http.get(this.recordsEndpoint);
   }
 }

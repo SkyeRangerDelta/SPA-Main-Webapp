@@ -1,23 +1,29 @@
-<div class="notice-article">
-  @if ( !loading && notice ) {
-    <h2 class="notice-title">{{ notice.title }}</h2>
-    <div class="notice-meta">
-      <span class="notice-date">Posted: {{ notice.createdAtFriendly }}</span>
+@if (!loading && notice) {
+  <section class="notice-article notice-{{ notice.class }}">
+    <header class="notice-header">
+      <h1 class="notice-title content-header">{{ notice.title }}</h1>
+      <div class="notice-meta">
+        <span class="notice-date">Posted: {{ notice.createdAtFriendly }} | Authored by: {{ notice.author }}</span>
+      </div>
+    </header>
+
+    <div class="notice-body" [innerHTML]="noticeContent">
     </div>
-    <div class="notice-content">
-      <p>{{ notice.content }}</p>
+
+    <div class="disclaimer">
+      This article <i>may</i> have been published using a message link from Discord. Please excuse any formatting
+      errors that may make it hard to read.
     </div>
-  }
-  @else {
-    <ng-template [ngTemplateOutlet]="loadingOrError"></ng-template>
-  }
-</div>
+
+  </section>
+} @else {
+  <ng-template [ngTemplateOutlet]="loadingOrError"></ng-template>
+}
 
 <ng-template #loadingOrError>
-  @if ( loading ) {
+  @if (loading) {
     Loading article...
-  } @else if ( !loading && error ) {
+  } @else if (!loading && error) {
     {{ error }}
   }
 </ng-template>
-
