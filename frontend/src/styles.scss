@@ -770,7 +770,30 @@ body.light-mode .notice-article {
   background: $color-dark-accent;
   border-top-left-radius: 8px; border-top-right-radius: 8px;
 }
+
 body.light-mode .notice-article::before { background: $color-light-accent; }
+
+.notice-article.notice-warning::before {
+  background: $color-blurb-border-warning;
+}
+
+.notice-article.notice-info::before {
+  background: $color-blurb-border-info;
+}
+
+.notice-article.notice-critical::before {
+  background: $color-blurb-border-critical;
+}
+
+body.light-mode .notice-article.notice-info::before {
+  background: $color-blurb-border-info;
+}
+body.light-mode .notice-article.notice-warning::before {
+  background: $color-blurb-border-warning;
+}
+body.light-mode .notice-article.notice-critical::before {
+  background: $color-blurb-border-critical;
+}
 
 
 /* Header with accent rule */
@@ -812,6 +835,26 @@ body.light-mode .notice-body { color: $color-light-text; }
 }
 body.light-mode .notice-body p:first-child {
   border-left-color: $color-light-accent;
+}
+
+.notice-article.notice-info .notice-body p:first-child {
+  border-left-color: $color-blurb-border-info;
+}
+.notice-article.notice-warning .notice-body p:first-child {
+  border-left-color: $color-blurb-border-warning;
+}
+.notice-article.notice-critical .notice-body p:first-child {
+  border-left-color: $color-blurb-border-critical;
+}
+
+body.light-mode .notice-article.notice-info .notice-body p:first-child {
+  border-left-color: $color-blurb-border-info;
+}
+body.light-mode .notice-article.notice-warning .notice-body p:first-child {
+  border-left-color: $color-blurb-border-warning;
+}
+body.light-mode .notice-article.notice-critical .notice-body p:first-child {
+  border-left-color: $color-blurb-border-critical;
 }
 
 .ft-rtn-link {

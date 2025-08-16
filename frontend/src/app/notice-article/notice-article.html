@@ -1,5 +1,5 @@
-<section class="notice-article">
-  @if (!loading && notice) {
+@if (!loading && notice) {
+  <section class="notice-article notice-{{ notice.class }}">
     <header class="notice-header">
       <h1 class="notice-title content-header">{{ notice.title }}</h1>
       <div class="notice-meta">
@@ -11,10 +11,10 @@
       <p>{{ notice.content }}</p>
     </div>
 
-  } @else {
-    <ng-template [ngTemplateOutlet]="loadingOrError"></ng-template>
-  }
-</section>
+  </section>
+} @else {
+  <ng-template [ngTemplateOutlet]="loadingOrError"></ng-template>
+}
 
 <ng-template #loadingOrError>
   @if (loading) {
