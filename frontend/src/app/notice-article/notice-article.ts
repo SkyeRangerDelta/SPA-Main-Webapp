@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DbHandlerService } from '../services/db-handler-service';
 import { Notice, NoticeRes } from '../TypeDefs';
 import { NgTemplateOutlet } from '@angular/common';
@@ -7,8 +7,7 @@ import { NgTemplateOutlet } from '@angular/common';
 @Component({
   selector: 'app-notice-article',
   imports: [
-    NgTemplateOutlet,
-    RouterLink
+    NgTemplateOutlet
   ],
   templateUrl: './notice-article.html',
   styleUrl: './notice-article.scss'

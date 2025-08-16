@@ -714,6 +714,19 @@ body.light-mode .nav-sub-menu a.active {
   border-left-color: $color-blurb-border-critical;
 }
 
+.notice-title {
+  font-family: $header-text, serif; /* matches your section headers */
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin: 0 0 0.25rem 0;
+  color: $color-dark-text;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
+body.light-mode .notice-title {
+  color: $color-light-text;
+  text-shadow: none;
+}
+
 // Light Mode Overrides
 body.light-mode .notice-blurb {
   background: $color-light-surface;
@@ -730,6 +743,75 @@ body.light-mode .notice-blurb {
   .notice-date {
     color: color.adjust($color-light-text, $lightness: -30%);
   }
+}
+
+/* Card-like article container */
+.notice-article {
+  max-width: 760px;
+  margin: 2.5rem auto;
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: $color-dark-primary;
+  border: 1px solid rgba($color-dark-text, 0.12);
+  border-radius: 8px;
+}
+
+/* Light mode override */
+body.light-mode .notice-article {
+  background: $color-light-primary;
+  border-color: rgba($color-light-text, 0.12);
+}
+
+.notice-article { position: relative; }
+.notice-article::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; right: 0;
+  height: 4px;
+  background: $color-dark-accent;
+  border-top-left-radius: 8px; border-top-right-radius: 8px;
+}
+body.light-mode .notice-article::before { background: $color-light-accent; }
+
+
+/* Header with accent rule */
+.notice-header {
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba($color-dark-text, 0.15);
+}
+body.light-mode .notice-header {
+  border-bottom-color: rgba($color-light-text, 0.15);
+}
+
+
+/* Meta line (small caps, spaced) */
+.notice-meta {
+  font-family: $body-text, serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: color.adjust($color-dark-text, $lightness: -18%);
+}
+body.light-mode .notice-meta {
+  color: color.adjust($color-light-text, $lightness: -35%);
+}
+
+/* Body copy rhythm */
+.notice-body {
+  margin-top: 1rem;
+  line-height: 1.6;
+  color: $color-dark-text;
+}
+body.light-mode .notice-body { color: $color-light-text; }
+
+/* Vertical spacing between paragraphs/elements */
+.notice-body > * + * { margin-top: 0.85rem; }
+
+/* Optional left accent bar for first paragraph */
+.notice-body p:first-child {
+  padding-left: 0.85rem;
+  border-left: 3px solid $color-dark-accent;
+}
+body.light-mode .notice-body p:first-child {
+  border-left-color: $color-light-accent;
 }
 
 .ft-rtn-link {
