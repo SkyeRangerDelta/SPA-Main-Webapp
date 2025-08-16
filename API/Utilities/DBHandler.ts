@@ -78,6 +78,10 @@ export class DBHandler {
     return await this.database.collection( collection ).updateOne( filter, update );
   }
 
+  public async getRecordCount( collection: string ) {
+    return await this.database.collection( collection ).countDocuments({ id: { $gt: 0 } });
+  }
+
   private async validateDb() {
     // Check if the database is connected
     if (!this.database) {
