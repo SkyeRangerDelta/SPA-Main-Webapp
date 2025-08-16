@@ -21,9 +21,17 @@ export class NoticeArticle {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.dbService.getNoticeById(id).subscribe( (noticeRes: NoticeRes) => {
-        if ( !noticeRes.success || !noticeRes || !noticeRes.notice ) {
+        if ( !noticeRes.notice ) {
+          this.error = 'Notice not found.';
+          this.loading = false;
+        }
+        else if ( !noticeRes.success || !noticeRes ) {
           console.error('Error fetching notice:', noticeRes.message);
           this.error = 'Notice not found.';
+          this.loading = false;
+        }
+        else {
+          this.notice = noticeRes.notice;
           this.loading = false;
         }
       } );
