@@ -19,7 +19,8 @@ export class NoticeBlurb {
     updatedAt: new Date(),
     createdAtFriendly: '',
     updatedAtFriendly: '',
-    class: 'notice-blurb-default'
+    class: 'notice-blurb-default',
+    author: ''
   };
 
   id = this.noticeData.id;
@@ -30,6 +31,7 @@ export class NoticeBlurb {
   createdAtFriendly = this.createdAt.toLocaleDateString() + ' ' + this.createdAt.toLocaleTimeString();
   updatedAtFriendly = this.updatedAt.toLocaleDateString() + ' ' + this.updatedAt.toLocaleTimeString();
   class = this.noticeData.class || 'notice-blurb-default';
+  author = this.noticeData.author || '';
 
   createdAtDay = this.noticeData.createdAt.getDate().toString();
   createdAtMonth = this.noticeData.createdAt.toLocaleString('en-US', { month: 'short' });
@@ -49,6 +51,7 @@ export class NoticeBlurb {
       this.createdAtFriendly = this.createdAt.toLocaleDateString() + ' ' + this.createdAt.toLocaleTimeString();
       this.updatedAtFriendly = this.updatedAt.toLocaleDateString() + ' ' + this.updatedAt.toLocaleTimeString();
       this.class = data.class || 'notice-blurb-default';
+      this.author = data.author || '';
     }
   }
 }
