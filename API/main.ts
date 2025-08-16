@@ -39,6 +39,12 @@ app.use( async ( ctx, next ) => {
   console.log(`${ctx.request.method} ${ctx.request.url} - ${ms}ms`);
 });
 
+// ENV check
+const adminToken = Deno.env.get('ADMIN_TOKEN');
+if ( !adminToken ) {
+  console.error( "ADMIN_TOKEN not found in environment variables. Some endpoints will not work!" );
+}
+
 // Pages/Routes
 app.use( MainRouter.routes(), MainRouter.allowedMethods() );
 

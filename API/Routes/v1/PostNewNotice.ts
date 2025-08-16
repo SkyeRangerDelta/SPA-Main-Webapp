@@ -2,6 +2,7 @@
 import { Router, RouterContext } from 'https://deno.land/x/oak/mod.ts';
 import { DBHandler } from "../../Utilities/DBHandler.ts";
 import { DraftNoticeRes, Notice } from "../../Interfaces.ts";
+import { randomUUID } from "node:crypto";
 
 interface NoticeRes {
   status: number;
@@ -17,6 +18,21 @@ router
   .post('/PostNewNotice', async ( ctx: RouterContext<string> ) => {
     const Mongo: DBHandler = ctx.state.Mongo;
     const data = await ctx.request.body.json();
+
+    const adminToken = Deno.env.get( 'ADMIN_TOKEN' ) || randomUUID;
+
+    // Check headers for a predefined ENV token
+    const token = ctx.request.headers.get( 'x-admin-token' );
+    if ( !token || token !== adminToken ) {
+      const res: DraftNoticeRes = {
+        status: 401,
+        message: 'Unauthorized. Invalid or missing token.',
+        success: false
+      }
+      ctx.response.status = 401;
+      ctx.response.body = res;
+      return;
+    }
 
     // Get the highest notice in the DB
     const notices = await Mongo.getRecordCount( 'SPA_Notices' );
