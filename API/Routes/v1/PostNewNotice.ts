@@ -49,7 +49,8 @@ router
       updatedAt: postDate,
       createdAtFriendly: postDate.toDateString(),
       updatedAtFriendly: postDate.toDateString(),
-      class: data.class
+      class: data.class,
+      author: data.author
     } as Notice;
 
     const noticePost = await Mongo.insertOne( 'SPA_Notices', noticeToPost );

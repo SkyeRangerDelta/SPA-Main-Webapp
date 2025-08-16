@@ -7,6 +7,7 @@ export interface Notice {
   createdAtFriendly: string,
   updatedAtFriendly: string;
   class: string;
+  author: string;
 }
 
 export interface NoticeRes {
