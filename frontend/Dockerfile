@@ -13,6 +13,6 @@ COPY nginx.conf /etc/nginx/nginx.conf.template
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENV API_PORT=4100
-ENV API_HOST=0.0.0.0
+ENV API_HOST=localhost
 EXPOSE 80
 CMD ["/entrypoint.sh"]
