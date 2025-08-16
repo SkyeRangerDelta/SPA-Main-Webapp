@@ -13,12 +13,14 @@ import { SlicePipe } from '@angular/common';
   styleUrl: './notice-blurb.scss'
 })
 export class NoticeBlurb {
+  currentDate = new Date();
+
   @Input() noticeData: Notice = {
     id: 0,
     title: 'No data here.',
     content: 'Please check your connection.',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: this.currentDate,
+    updatedAt: this.currentDate,
     createdAtFriendly: '',
     updatedAtFriendly: '',
     class: 'notice-blurb-default',
@@ -30,8 +32,8 @@ export class NoticeBlurb {
   content = this.noticeData.content;
   createdAt = this.noticeData.createdAt;
   updatedAt = this.noticeData.updatedAt;
-  createdAtFriendly = this.createdAt.toLocaleDateString() + ' ' + this.createdAt.toLocaleTimeString();
-  updatedAtFriendly = this.updatedAt.toLocaleDateString() + ' ' + this.updatedAt.toLocaleTimeString();
+  createdAtFriendly = this.noticeData.createdAtFriendly;
+  updatedAtFriendly = this.noticeData.updatedAtFriendly;
   class = this.noticeData.class || 'notice-blurb-default';
   author = this.noticeData.author || '';
 
@@ -45,13 +47,16 @@ export class NoticeBlurb {
     if ( changes['noticeData'] && changes['noticeData'].currentValue ) {
       const data = changes['noticeData'].currentValue;
 
+      const noticeDate = data.createdAt || new Date();
+      const noticeUpdated = data.updatedAt || new Date();
+
       this.id = data.id || 0;
       this.title = data.title || 'No title provided';
       this.content = data.content || 'No content provided';
-      this.createdAt = data.createdAt ? new Date(data.createdAt) : new Date();
-      this.updatedAt = data.updatedAt ? new Date(data.updatedAt) : new Date();
-      this.createdAtFriendly = this.createdAt.toLocaleDateString() + ' ' + this.createdAt.toLocaleTimeString();
-      this.updatedAtFriendly = this.updatedAt.toLocaleDateString() + ' ' + this.updatedAt.toLocaleTimeString();
+      this.createdAt = noticeDate;
+      this.updatedAt = noticeUpdated;
+      this.createdAtFriendly = data.createdAtFriendly;
+      this.updatedAtFriendly = data.updatedAtFriendly;
       this.class = data.class || 'notice-blurb-default';
       this.author = data.author || '';
     }
