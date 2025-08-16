@@ -732,6 +732,19 @@ body.light-mode .notice-blurb {
   }
 }
 
+.ft-rtn-link {
+  font-size: 0.95rem;
+  text-align: center;
+  display: block;
+  padding-bottom: 5rem;
+  color: $color-dark-link-accent;
+  text-decoration: none;
+}
+
+a .ft-rtn-link {
+  text-decoration: none;
+}
+
 // Dark Mode Enhancements (optional redundancy)
 body.dark-mode .notice-blurb {
   background: $color-dark-surface;
