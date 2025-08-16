@@ -16,6 +16,13 @@ export interface NoticeRes {
   notice?: Notice | null;
 }
 
+export interface DraftNoticeRes {
+  status: number;
+  message: string;
+  success: boolean;
+  postId?: number;
+}
+
 export interface Department {
   id: number;
   name: string;
