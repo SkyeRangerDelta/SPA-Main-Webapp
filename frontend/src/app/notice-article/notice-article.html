@@ -7,10 +7,7 @@
       </div>
     </header>
 
-  <div class="notice-body">
-    @for ( pElement of noticeParagraphs; track pElement.id ) {
-      <p>{{ pElement.text }}</p>
-    }
+  <div class="notice-body" [innerHTML]="noticeContent">
   </div>
 
   </section>
