@@ -4,6 +4,11 @@ import { DbHandlerService } from '../services/db-handler-service';
 import { Notice, NoticeRes } from '../TypeDefs';
 import { NgTemplateOutlet } from '@angular/common';
 
+interface paragraph {
+  id: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-notice-article',
   imports: [
@@ -16,6 +21,7 @@ export class NoticeArticle {
   notice: Notice | null = null;
   loading = true;
   error: string | null = null;
+  noticeParagraphs: paragraph[] = [];
 
   constructor(private route: ActivatedRoute, private dbService: DbHandlerService) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -33,6 +39,10 @@ export class NoticeArticle {
         else {
           this.notice = noticeRes.notice;
           this.loading = false;
+
+          this.noticeParagraphs = this.notice.content
+            .split(/\r?\n/)
+            .map((text, idx) => ({ id: idx, text }));
         }
       } );
     } else {
