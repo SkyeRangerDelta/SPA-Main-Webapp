@@ -10,8 +10,6 @@ export class DbHandlerService {
 
   private apiEndpoint = '/api/v1/';
   private noticesEndpoint = this.apiEndpoint + 'GetNotices';
-  private recordsEndpoint = this.apiEndpoint + 'GetRecords';
-
   constructor ( private http: HttpClient ) {  }
 
   getNotices( limit?: number, offset?: number ) {
@@ -85,9 +83,5 @@ export class DbHandlerService {
         return of([] as Department[]); // Return an empty array on error
       }
     ));
-  }
-
-  getRecords() {
-    return this.http.get(this.recordsEndpoint);
   }
 }
