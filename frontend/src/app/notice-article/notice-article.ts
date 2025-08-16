@@ -18,8 +18,6 @@ export class NoticeArticle {
   error: string | null = null;
 
   constructor(private route: ActivatedRoute, private dbService: DbHandlerService) {
-    console.log('NoticeArticle component initialized');
-
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.dbService.getNoticeById(id).subscribe( (noticeRes: NoticeRes) => {

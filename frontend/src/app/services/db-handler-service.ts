@@ -21,11 +21,10 @@ export class DbHandlerService {
       `${this.noticesEndpoint}${query}`,
     ).pipe(
       map( (data: any) => {
-        // If API returns {notices: [...], ...}
         if ( data && Array.isArray(data.notices) ) {
           return data.notices;
         }
-        // Fallback for old response
+
         if ( Array.isArray(data) ) {
           return data;
         }
