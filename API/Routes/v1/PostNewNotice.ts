@@ -23,6 +23,7 @@ router
 
     // Check headers for a predefined ENV token
     const token = ctx.request.headers.get( 'x-admin-token' );
+
     if ( !token || token !== adminToken ) {
       const res: DraftNoticeRes = {
         status: 401,
