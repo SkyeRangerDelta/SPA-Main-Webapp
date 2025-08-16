@@ -41,24 +41,29 @@ export class NoticeBlurb {
   createdAtMonth = this.noticeData.createdAt.toLocaleString('en-US', { month: 'short' });
   createdAtYear = this.noticeData.createdAt.getFullYear().toString();
 
-  createdAtRest = this.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  createdAtRest = this.noticeData.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes['noticeData'] && changes['noticeData'].currentValue ) {
-      const data = changes['noticeData'].currentValue;
+      const data = changes['noticeData'].currentValue as Notice;
 
-      const noticeDate = data.createdAt || new Date();
-      const noticeUpdated = data.updatedAt || new Date();
+      data.createdAt = new Date( data.createdAt );
+      data.updatedAt = new Date( data.updatedAt );
 
       this.id = data.id || 0;
       this.title = data.title || 'No title provided';
       this.content = data.content || 'No content provided';
-      this.createdAt = noticeDate;
-      this.updatedAt = noticeUpdated;
+      this.createdAt = data.createdAt;
+      this.updatedAt = data.updatedAt;
       this.createdAtFriendly = data.createdAtFriendly;
       this.updatedAtFriendly = data.updatedAtFriendly;
       this.class = data.class || 'notice-blurb-default';
       this.author = data.author || '';
+
+      this.createdAtDay = data.createdAt.getDate().toString();
+      this.createdAtMonth = data.createdAt.toLocaleString('en-US', { month: 'short' });
+      this.createdAtYear = data.createdAt.getFullYear().toString();
+      this.createdAtRest = data.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
   }
 }
