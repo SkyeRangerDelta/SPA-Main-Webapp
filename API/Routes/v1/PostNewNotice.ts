@@ -39,7 +39,14 @@ router
     const notices = await Mongo.getRecordCount( 'SPA_Notices' );
     const id = notices + 1;
 
-    const postDate = new Date();
+    let postDate;
+
+    if ( data.createdAt ) {
+      postDate = new Date( data.createdAt )
+    }
+    else {
+      postDate = new Date();
+    }
 
     const noticeToPost = {
       id: id,
