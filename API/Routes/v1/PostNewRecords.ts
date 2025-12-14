@@ -18,7 +18,6 @@ const router = new Router();
 router
   .post('/PostNewRecords', async ( ctx: RouterContext<string> ) => {
     const Mongo: DBHandler = ctx.state.Mongo;
-    const data = await ctx.request.body.json();
 
     const adminToken = Deno.env.get( 'ADMIN_TOKEN' ) || randomUUID;
 
@@ -32,6 +31,20 @@ router
         success: false
       }
       ctx.response.status = 401;
+      ctx.response.body = res;
+      return;
+    }
+
+    let data;
+    try {
+      data = await ctx.request.body.json();
+    } catch ( error ) {
+      const res: PostRecordsRes = {
+        status: 400,
+        message: 'Bad request. Invalid or missing JSON body.',
+        success: false
+      }
+      ctx.response.status = 400;
       ctx.response.body = res;
       return;
     }
