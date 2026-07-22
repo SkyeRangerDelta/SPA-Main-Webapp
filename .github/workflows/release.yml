@@ -15,25 +15,36 @@ jobs:
   release:
     name: semantic-release
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semrel.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - name: Install release deps
-        run: npm i -D semantic-release @semantic-release/git
+        run: npm i -D semantic-release @semantic-release/git @semantic-release/exec
       - name: semantic-release
+        id: semrel
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
-  build-and-push-frontend:
-    name: Build & Push Frontend Docker Image
+  build-and-push:
+    name: Build & Push ${{ matrix.image }}
     runs-on: ubuntu-latest
     needs: [release]
     permissions:
       contents: read
       packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: spa-main-backend
+            context: ./API
+          - image: spa-main-frontend
+            context: ./frontend
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,90 +54,77 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract repository name
-        id: repo
-        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
-      - name: Extract repository owner
-        id: owner
-        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-      - name: Set image tag
-        id: tag
+
+      # Moving tags track the head of each release line; the version tag is the
+      # immutable one a deployment should actually pin. VERSION is empty when the
+      # merged commits did not warrant a release, in which case it is skipped.
+      - name: Compute image reference and tags
+        id: meta
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
         run: |
-          if [[ "${GITHUB_REF##*/}" == "master" ]]; then
-            echo "TAG=latest" >> $GITHUB_ENV
-          elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
-            echo "TAG=experimental" >> $GITHUB_ENV
-          else
-            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
-          fi
-      - name: Build backend Docker image
+          set -euo pipefail
+          OWNER="$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')"
+          IMAGE="ghcr.io/${OWNER}/${{ matrix.image }}"
+          TAGS=("sha-${GITHUB_SHA::7}")
+
+          case "${GITHUB_REF_NAME}" in
+            master)
+              TAGS+=("latest")
+              if [ -n "${VERSION}" ]; then
+                # Floating major/minor tags are stable-only; a prerelease must
+                # never be reachable via :1 or :1.7.
+                TAGS+=("${VERSION}" "${VERSION%.*}" "${VERSION%%.*}")
+              fi
+              ;;
+            Experimental)
+              TAGS+=("experimental")
+              if [ -n "${VERSION}" ]; then
+                TAGS+=("${VERSION}")
+              fi
+              ;;
+            *)
+              TAGS+=("${GITHUB_REF_NAME}")
+              ;;
+          esac
+
+          ARGS=""
+          for t in "${TAGS[@]}"; do
+            ARGS="${ARGS} -t ${IMAGE}:${t}"
+          done
+
+          {
+            echo "image=${IMAGE}"
+            echo "args=${ARGS}"
+            echo "tags=${TAGS[*]}"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Tagging ${IMAGE} with: ${TAGS[*]}"
+
+      - name: Build Docker image
         run: |
           docker build \
-            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
+            --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY,,}" \
             --label "org.opencontainers.image.authors=${{ github.actor }}" \
-            --label "org.opencontainers.image.title=${{ env.REPO }}" \
-            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} \
-            -t ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }} ./frontend
-      - name: Push backend Docker image ( sha )
-        run: |
-          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ github.sha }} 
+            --label "org.opencontainers.image.title=${{ matrix.image }}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --label "org.opencontainers.image.version=${{ needs.release.outputs.version }}" \
+            ${{ steps.meta.outputs.args }} ${{ matrix.context }}
 
-      - name: Push backend Docker image ( tag )
-        run: |
-          docker push ghcr.io/${{ env.OWNER }}/spa-main-frontend:${{ env.TAG }}
+      - name: Push Docker image
+        run: docker push --all-tags ${{ steps.meta.outputs.image }}
 
-  build-and-push-backend:
-    name: Build & Push Backend Docker Image
-    runs-on: ubuntu-latest
-    needs: [release]
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract repository name
-        id: repo
-        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
-      - name: Extract repository owner
-        id: owner
-        run: echo "OWNER=$(echo ${GITHUB_REPOSITORY%%/*} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-      - name: Set image tag
-        id: tag
+      - name: Summarize
         run: |
-          if [[ "${GITHUB_REF##*/}" == "master" ]]; then
-            echo "TAG=latest" >> $GITHUB_ENV
-          elif [[ "${GITHUB_REF##*/}" == "Experimental" ]]; then
-            echo "TAG=experimental" >> $GITHUB_ENV
-          else
-            echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
-          fi
-      - name: Build backend Docker image
-        run: |
-          docker build \
-            --label "org.opencontainers.image.source=https://github.com/${{ env.REPO }}" \
-            --label "org.opencontainers.image.authors=${{ github.actor }}" \
-            --label "org.opencontainers.image.title=${{ env.REPO }}" \
-            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} \
-            -t ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }} ./API
-      - name: Push backend Docker image ( sha )
-        run: |
-          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ github.sha }} 
-
-      - name: Push backend Docker image ( tag )
-        run: |
-          docker push ghcr.io/${{ env.OWNER }}/spa-main-backend:${{ env.TAG }}
+          echo "### ${{ matrix.image }}" >> "$GITHUB_STEP_SUMMARY"
+          for t in ${{ steps.meta.outputs.tags }}; do
+            echo "- \`${{ steps.meta.outputs.image }}:${t}\`" >> "$GITHUB_STEP_SUMMARY"
+          done
 
   sync-master-to-experimental:
     name: Sync Experimental
     runs-on: ubuntu-latest
-    needs: [build-and-push-frontend, build-and-push-backend]
+    needs: [build-and-push]
     if: github.event_name == 'push' && github.ref_name == 'master'
     steps:
       - name: Checkout Experimental
